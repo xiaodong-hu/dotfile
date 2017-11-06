@@ -1,0 +1,229 @@
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# 开机自启
+## 壁纸(须先安装feh) 
+exec_always --no-startup-id feh --bg-fill /home/hxd/Pictures/Random\ Desktop/qihun.jpg
+## 自动关闭屏幕 
+exec --no-startup-id xset dpms 600
+exec --no-startup-id compton &
+exec_always --no-startup-id nm-applet &
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id mate-power-manager
+
+# set $mod
+set $mod Mod1 
+# Mod4 is win, Mod1 is Alt
+
+# start a terminal
+bindsym $mod+Return exec termite
+
+new_window none # make the new window with no pixels, IMPORTANT to beautify
+
+# close the focusing window
+bindsym mod1+F4 kill
+
+# font set 
+font pango:Cantarell 11
+
+floating_modifier $mod
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+
+# use rofi as launcher rather tha dmenu
+bindsym $mod+d exec rofi -show run 
+#-lines 5 -eh 2 -width 100 -padding 800 -opacity "40" -bw 0 -bc "$bg-color" -bg "black" -fg "white" -hlbg "black" -hlfg "black"
+
+# Screenshot by scrot
+
+bindsym --release $mod+Print exec --no-startup-id scrot -q 100 /home/hxd/Pictures/Screenshots/"Screenshot from %Y-%m-%d %H-%M-%S".png
+
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+#bindsym $mod+Shift+j move left
+#bindsym $mod+Shift+k move down
+#bindsym $mod+Shift+l move up
+#bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#===============Workspaces===============
+# set workspace names
+set $1 "    "
+set $2 "    "
+set $3 "    "
+set $4 "    "
+set $5 "     "
+set $6 "     "
+set $7 "    "
+set $8 "    "
+set $9 "    "
+set $0 "  "
+
+# switch to workspace
+bindsym $mod+1 workspace $1
+bindsym $mod+2 workspace $2
+bindsym $mod+3 workspace $3
+bindsym $mod+4 workspace $4
+bindsym $mod+5 workspace $5
+bindsym $mod+6 workspace $6
+bindsym $mod+7 workspace $7
+bindsym $mod+8 workspace $8
+bindsym $mod+9 workspace $9
+bindsym $mod+0 workspace $0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $1
+bindsym $mod+Shift+2 move container to workspace $2
+bindsym $mod+Shift+3 move container to workspace $3
+bindsym $mod+Shift+4 move container to workspace $4
+bindsym $mod+Shift+5 move container to workspace $5
+bindsym $mod+Shift+6 move container to workspace $6
+bindsym $mod+Shift+7 move container to workspace $7
+bindsym $mod+Shift+8 move container to workspace $8
+bindsym $mod+Shift+9 move container to workspace $9
+bindsym $mod+Shift+0 move container to workspace $0
+
+exec --no-startup-id termite
+
+assign [class="Thunar"] $4
+exec --no-startup-id thunar
+
+assign [class="sublime-text"] $1
+
+assign [class="Vivaldi-stable"] $3
+# assign [class="Google-chrome-unstable"] $3
+
+assign [class="Forxit Reader"] $2
+assign [class="Evince"] $2
+exec --no-startup-id evince
+
+assign [class="Sabaki"] $0
+exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
+
+assign [class="VirtualBox"] $9
+assign [class="electronic-wechat"] $8
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+#===============状态栏===============
+# bar
+
+# replaced by polybar
+
+
+
+#===============系统命令===============
+set $mode_system  Lock(L) | Log Out(O) | Power Off(P) | Restart(R) | Exit(Esc)
+bindsym $mod+shift+q mode "$mode_system"
+mode "$mode_system" {
+	bindsym l exec i3lock -i /home/hxd/Pictures/Random\ Desktop/arch-image.png 
+    bindsym o exec i3-msg exit
+    bindsym p exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym Escape mode "default"
+}
+
+#===============鼠标聚焦===============
+focus_follows_mouse no
+
+#===============窗口间距===============
+gaps inner 10
+gaps outer 35 # 配合 polybar 的 override direct 容许的 offset
+#smart_gaps on #must be disabled, otherwise will counteract with the offset of polybar
+
+#===============锁屏快捷键===============
+bindsym $mod+shift+l exec i3lock -i /home/hxd/Pictures/Random\ Desktop/arch-image.png
+
+#===============自动启动fcitx===============
+exec --no-startup-id fcitx
+
+# for sound control  
+bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master playback 5+
+bindsym XF86AudioLowerVolume exec amixer -c 1 set Master playback 5-
+bindsym XF86AudioMute exec amixer set Master toggle

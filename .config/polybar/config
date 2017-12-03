@@ -1,8 +1,8 @@
 [colors]
-background = #222 
-; background = #aa000000
-; for transparency
-; default black #222
+; background = #222 
+background = #aa000000
+; this is for transparency
+; default is black #222
 background-alt = #444
 foreground = #dfdfdf
 foreground-alt = #55
@@ -79,7 +79,8 @@ tray-padding = 4
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
+;令全屏时polybar处于底部不遮挡全屏窗口，必要
 
 override-redirect = true
 ;要调整偏移(offset)，必要
@@ -103,6 +104,8 @@ offset-y = 1%
 
 override-redirect = true
 ;要调整偏移(offset)，必要
+wm-restack = i3 
+;令全屏时polybar处于底部不遮挡全屏窗口，必要
 
 ;background = ${xrdb:color9}
 background = ${colors.background}
@@ -127,7 +130,7 @@ font-1 = unifont:size=10;2
 font-2 = siji:pixelsize=10;3
 font-3 = FontAwesome:pixelsize=14;2
 
-modules-left = mpd
+modules-left = mpd github
 modules-center = networkspeedup networkspeeddown
 modules-right = volume filesystem-slash filesystem-home temperature cpu_pic memory
 
@@ -221,16 +224,17 @@ label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+;ws-icon-6 = 7;
+;ws-icon-7 = 8;
+;ws-icon-8 = 9;
+;ws-icon-9 = 10;
 
 [module/github]
 type = internal/github
@@ -243,6 +247,9 @@ format-prefix-foreground = #5b
 
 [module/mpd]
 type = internal/mpd
+; host = 127.0.0.1
+; port = 6600
+; password = 
 
 format-online = " <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <label-song>  <bar-progress>"
 
@@ -412,7 +419,7 @@ type = internal/network
 interface = wlp2s0
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = " "
+format-connected-prefix = ""
 format-connected-prefix-foreground = #5b
 
 [module/networkspeeddown]
@@ -420,7 +427,7 @@ type = internal/network
 interface = wlp2s0
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = " "
+format-connected-prefix = ""
 format-connected-prefix-foreground = #5b
 
 [module/date]

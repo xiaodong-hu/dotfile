@@ -93,18 +93,18 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-#===============Workspaces===============
+#=============== Workspaces ===============
 # set workspace names
-set $1 "    "
-set $2 "    "
+set $1 "    "
+set $2 "    "
 set $3 "    "
 set $4 "    "
-set $5 "     "
-set $6 "     "
+set $5 "    "
+set $6 "    "
 set $7 "    "
 set $8 "    "
 set $9 "    "
-set $0 "  "
+set $0 "   "
 
 # switch to workspace
 bindsym $mod+1 workspace $1
@@ -142,10 +142,10 @@ assign [class="Vivaldi-stable"] $3
 
 assign [class="Forxit Reader"] $2
 assign [class="Evince"] $2
-exec --no-startup-id evince
+# exec --no-startup-id evince
 
 assign [class="Sabaki"] $0
-exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
+# exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
 
 assign [class="VirtualBox"] $9
 assign [class="electronic-wechat"] $8
@@ -193,7 +193,6 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 #===============状态栏===============
 # bar
-
 # replaced by polybar
 
 
@@ -210,7 +209,7 @@ mode "$mode_system" {
 }
 
 #===============鼠标聚焦===============
-focus_follows_mouse no
+focus_follows_mouse yes
 
 #===============窗口间距===============
 gaps inner 10

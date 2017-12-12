@@ -243,3 +243,4 @@ bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
 bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/0.jpg
 bindsym Mod4+shift+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
 bindsym Mod4+shift+2 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/11.png
+bindsym Mod4+shift+3 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/12.jpg

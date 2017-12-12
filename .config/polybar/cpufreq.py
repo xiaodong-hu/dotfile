@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # written by hxd at Dec/04/2017
-
+'''
 import numpy as np
 
 cpu_info = 'cpu MHz'
@@ -15,3 +15,11 @@ for row in open('/proc/cpuinfo'):
 # print(cpu_freq_data)
 
 print('CPU %.2f GHz'%(float(np.mean(cpu_freq_data)/1000)))	# always output with two digits
+'''
+
+import os
+
+frequency = os.popen('cpupower frequency-info | tail -4 | head -n 1 | tr -d "[a-z][A-Z][(][)][:][ ][\n]"').read()
+# require `cpupower` package installed
+
+print('CPU {} GHz'.format(frequency))

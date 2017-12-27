@@ -139,7 +139,7 @@ font-3 = FontAwesome:pixelsize=14;2
 modules-left = 
 ;mpv-music
 modules-center = networkspeedup networkspeeddown
-modules-right = volume filesystem-slash filesystem-home temperature cpu_pic memory battery-tlp 
+modules-right = volume filesystem-slash filesystem-home Average-CPU-Temperature cpu_pic memory battery-tlp 
 
 tray-position = right
 tray-padding = 2
@@ -262,6 +262,11 @@ exec = python /home/hxd/.config/polybar/SSD.py
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${hexadecimal.Magenta}
 
+[module/Average-CPU-Temperature]
+type = custom/script
+interval = 2
+exec = python /home/hxd/.config/polybar/temperature.py
+
 
 [module/fortune]
 type = internal/cpu 
@@ -339,7 +344,7 @@ interval = 30
 
 [module/networkspeedup]
 type = internal/network
-interface = wlp2s0
+interface = wlp8s0
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = " "
@@ -348,7 +353,8 @@ format-connected-prefix-foreground = #5b
 
 [module/networkspeeddown]
 type = internal/network
-interface = wlp2s0
+# ip addr to find the name of net card 
+interface = wlp8s0
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = " "

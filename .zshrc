@@ -1,23 +1,18 @@
 # 开机自动打开i3
 #[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-# 改 hosts
-alias hosts='sudo wget https://raw.githubusercontent.com/racaljk/hosts/master/hosts -O /etc/hosts'
+# Ruby 环境（用于 gem install）
+export PATH=$PATH:/home/hxd/.gem/ruby/2.4.0/bin
 
-alias sabaki='/home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage'
-export PATH=/home/hxd/.gem/ruby/2.4.0/bin:$PATH
-
-
-
-
-
+# Sabaki
+alias sabaki="/home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/hxd/.oh-my-zsh
+export ZSH=/home/hxd/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.

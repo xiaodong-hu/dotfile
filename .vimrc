@@ -1,42 +1,26 @@
-" 文件编码
-set fileencodings=utf-8
+" ========== hxd VIM configuration ==========
+" Last edit on Dec/28/2017
+" ===========================================
 
-" 显示行号
-set number
-
-" 语法高亮
-syntax on
-
-" 不要备份配置
-set nobackup
-
-" 鼠标可用
-set mouse=a
-
-" 智能（弱智）制表
-set smarttab
+set fileencodings=utf-8			" 文件编码
+set number				" 显示行号
+syntax on				" 语法高亮
+set nobackup				" 不要备份配置
+set mouse=a				" 鼠标可用
+set smarttab				" 智能（弱智）制表
 
 
 " ========== Indentation ==========
-" 定义一个 tab 对应多少个 space
-set shiftwidth=4
+set shiftwidth=4			" 定义一个 tab 对应多少个 space
+set tabstop=4				" 没看懂 help，必须保证与上面一样
 
-" 没看懂，必须保证与上面一样
-set tabstop=4
-
-" 用于 C 中出现 { 时被激活自动对齐上一行
-set smartindent
-
-" 自动对齐上一行
-set autoindent
-
-" 超过一行后保持 Indentation, 参见 :help breakindent
-set breakindent
-
-" 断词 Indentation，参见 https://stackoverflow.com/questions/2828174/word-wrap-in-vim-preserving-indentation
-:set formatoptions=l
-:set lbr
-
+set smartindent				" 用于 C 中出现 { 时被激活自动对齐上一行
+set autoindent				" 自动对齐上一行
+set breakindent				" 超过一行后保持 Indentation
+					" 参见 :help breakindent
+					
+:set formatoptions=l			" 断词 Indentation
+:set lbr				" 参见 https://stackoverflow.com/questions/2828174/word-wrap-in-vim-preserving-indentation
 " ============================
 
 
@@ -46,55 +30,49 @@ let g:solarized_termcolors=256
 " light or dark
 set background=dark
 
-
-" 行列定位光标，参见 https://www.jianshu.com/p/b8763c23ea64
-set cursorcolumn
-set cursorline
-" 配置定位行列颜色
+set cursorcolumn			" 行列光标定位
+					" 参见 https://www.jianshu.com/p/b8763c23ea64
+set cursorline				" 配置定位行列颜色
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 " ============================
 
-
-" 文件自动检测外部更改
-set autoread
-
-" 右下角显示光标位置
-set ruler
-" 不要闪烁
-set novisualbell
+set autoread				" 文件自动检测外部更改
+set ruler				" 右下角显示光标位置
+set novisualbell			" 不要闪烁
 
 
 " ========== Vim-Plug (不是 Vundle) ==========
 call plug#begin('~/.vim/plugged')
 
-Plug 'Raimondi/delimitMate'
-Plug 'Shougo/neocomplete.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'Raimondi/delimitMate'		" 括号补全
+Plug 'Shougo/neocomplete.vim'		" 主字典补全
+Plug 'junegunn/limelight.vim'		" 专注模式（没屁用。。）
 Plug 'junegunn/goyo.vim'
+
+" 以下 LaTeX 插件没一个中意的。。。
 " Plug 'vim-latex/vim-latex'
 " Plug 'xuhdev/vim-latex-live-preview'
 " Plug 'lervag/vimtex'
 
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons' 		" 必要图标
+Plug 'scrooloose/nerdtree'		" 文件目录
+Plug 'ryanoasis/vim-devicons' 		" 依据后缀加图标（并不够用，尤其 LaTeX 的）
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+					" 依后缀文件名高亮
 
 
 Plug 'vim-airline/vim-airline'		" require `powerline`，由 yaourt 安装
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'	" 状态栏，好看亦堪用
 
 
 " Snip-Mate require `vim-addon-mw-utils` and `tlib_vim`
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
-" 下载安装并修改别人维护的 Snippet 规则 (内含，如 C, python, tex 的各种 snippet)
-Plug 'honza/vim-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'	" snipmate 依赖
+Plug 'tomtom/tlib_vim'			" snipmate 依赖
+Plug 'garbas/vim-snipmate'		" snipmate
+Plug 'honza/vim-snippets'		" 别人维护的 Snippet 规则（依个人修改）
 
 call plug#end()
-
-" ============================
+" ===========================================
 
 
 
@@ -162,24 +140,30 @@ let g:limelight_conceal_ctermfg = '240'
 
 
 " ====================================
-" ========== 一键编译 ==================
+" ============= 一键编译 ===============
 " ====================================
 " 参见 http://blog.chinaunix.net/uid-21202106-id-2406761.html
 
+
+
+" ========== 自动工作路径切换 ==========
 
 " Always change the working directory to the dir of file, cf. http://vim.wikia.com/wiki/Get_the_name_of_the_current_file
 " %:p is the full path+filename
 " %:p:h is the full path
 " exec "cd %:p:h"
 
-" ========== 自动工作路径切换 ==========
+" --------- 以上无用 -------
+
 " Automatically change the current directoryEdit.
-" Sometimes it is helpful if your working directory is always the same as the file you are editing. To achieve this, put the following in your vimrc:(cf. http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file)
+" Sometimes it is helpful if your working directory is always the same as the file you are editing. To achieve this, put the following in your vimrc:
+" 参见 http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 
 autocmd BufEnter * silent! lcd %:p:h
-" ==================================
+" ===================================
 
 
+" ========== 设置编译脚本（VimScript） ==========
 " gcc
 func! CompileGcc()
     exec "w"
@@ -212,7 +196,11 @@ endfunc
 " LaTeX
 func! CompileLaTeX()
 	" 编译四次 xelatex, 一次 bib，一次 metapost (用于 Feynman 图)
-        exec "!xelatex -synctex=1 -interaction=nonstopmode '%'; !bibtex *.bib; !mpost *.mp; !xelatex -synctex=1 -interaction=nonstopmode '%'; !xelatex -synctex=1 -interaction=nonstopmode '%'"
+        " exec "!xelatex -synctex=1 -interaction=nonstopmode '%'; !bibtex *.bib; !mpost *.mp; !xelatex -synctex=1 -interaction=nonstopmode '%'; !xelatex -synctex=1 -interaction=nonstopmode '%'"
+	exec "!xelatex  -synctex=1 -interaction=nonstopmode '%'"
+	exec "!bibtex *.bib"
+	exec "!mpost *.mp"
+	exec "!xelatex  -synctex=1 -interaction=nonstopmode '%'"
 endfunc
 
 

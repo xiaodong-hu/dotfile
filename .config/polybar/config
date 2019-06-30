@@ -197,13 +197,13 @@ label-mode-background = ${colors.primary}
 label-focused = %name%
 label-focused-background = ${colors.background}
 label-focused-underline = ${hexadecimal.White}
-label-focused-padding = 3
+label-focused-padding = 2
 
 label-unfocused = %name%
-label-unfocused-padding = 3
+label-unfocused-padding = 2
 label-urgent = %name%!
 label-urgent-background = #bd2c40
-label-urgent-padding = 3
+label-urgent-padding = 2
 
 
 

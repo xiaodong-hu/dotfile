@@ -282,15 +282,18 @@ def parse_tex_log(data, root_dir):
 			if file_match:
 				debug("MATCHED (long line)")
 				file_name = file_match.group(1)
-				file_name = os.path.normpath(file_name.strip('"'))
 
+				# remove quotes if necessary, but first save the count for a later check
+				quotecount = file_name.count("\"")
+				file_name = file_name.replace("\"", "")
+
+				# Normalize the file path
+				file_name = os.path.normpath(file_name)
 				if not os.path.isabs(file_name):
 					file_name = os.path.normpath(os.path.join(root_dir, file_name))
 
 				file_extra = file_match.group(2) + file_match.group(3) # don't call it "extra"
-				# remove quotes if necessary, but first save the count for a later check
-				quotecount = file_name.count("\"")
-				file_name = file_name.replace("\"", "")
+				
 				# NOTE: on TL201X pdftex sometimes writes "pdfTeX warning" right after file name
 				# This may or may not be a stand-alone long line, but in any case if we
 				# extend, the file regex will fire regularly
@@ -704,6 +707,16 @@ def parse_tex_log(data, root_dir):
 				# Be conservative and do not try to report one.
 				errors.append(err_msg)
 				errors.append("Check the TeX log file for more information")
+				continue
+			#special: all text was ignored after line
+			if "all text was ignored after line" in line:
+				# we may be unable to report a file by popping it, so HACK HACK HACK
+				file_name, linelen = advance_iterator(log_iterator) # <inserted text>
+				file_name, linelen = advance_iterator(log_iterator) #      \fi
+				file_name, linelen = advance_iterator(log_iterator)
+				file_name = file_name[3:] # here is the file name with <*> in front
+				errors.append("TeX STOPPED: " + line[1:].strip())
+				errors.append("TeX reports the error was in file:" + file_name)
 				continue
 			# Now it's a regular TeX error 
 			err_msg = line[2:] # skip "! "

@@ -1,0 +1,8 @@
+<snippet>
+	<description>left\langle...right\rangle</description>
+	<content><![CDATA[
+\left\langle $0\right\rangle
+]]></content>
+	<tabTrigger>lr</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

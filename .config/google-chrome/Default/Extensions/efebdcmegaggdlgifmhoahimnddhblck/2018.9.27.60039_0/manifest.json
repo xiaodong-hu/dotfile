@@ -1,0 +1,39 @@
+{
+   "app": {
+      "icon_color": "#0C8484",
+      "launch": {
+         "web_url": "https://cn.bing.com/dict/?mkt=zh-CN"
+      },
+      "linked_icons": [ {
+         "size": 32,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      }, {
+         "size": 48,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      }, {
+         "size": 64,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      }, {
+         "size": 96,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      }, {
+         "size": 128,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      }, {
+         "size": 256,
+         "url": "https://cn.bing.com/sa/simg/bing_p_rr_teal_min.ico"
+      } ]
+   },
+   "description": "必应词典（Bing Dictionary）是微软推出的新一代英语学习引擎，它拥有最为丰富可靠的词库和例句库，为您提供优质的免费词典和翻译服务。",
+   "icons": {
+      "128": "icons/128.png",
+      "256": "icons/256.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "64": "icons/64.png",
+      "96": "icons/96.png"
+   },
+   "key": "05oLcDy88cO9nNZNg7zDuCO8f3niuqFr05tabOB+OX4=",
+   "name": "Bing dict",
+   "version": "2018.9.27.60039"
+}

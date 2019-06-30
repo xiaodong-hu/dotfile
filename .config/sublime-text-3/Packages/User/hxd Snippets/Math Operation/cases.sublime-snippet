@@ -1,0 +1,10 @@
+<snippet>
+	<description>cases</description>
+	<content><![CDATA[
+\begin{cases}
+	$0
+\end{cases}
+]]></content>
+	<tabTrigger>cs</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

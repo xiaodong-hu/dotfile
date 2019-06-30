@@ -1,0 +1,10 @@
+<snippet>
+	<description>array</description>
+	<content><![CDATA[
+\begin{array}{$1}
+	$0
+\end{array}
+]]></content>
+	<tabTrigger>ar</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

@@ -4,8 +4,14 @@
 import os
 
 # require package `sensors`
-temperature = os.popen('sensors | head -n 7 | tail -4').read().split("\n")
-
+temperature = os.popen('sensors | grep "Core [0-9]"').read().split("\n")
+#print(temperature)
+'''
+Core 0:        +41.0°C  (high = +84.0°C, crit = +100.0°C)
+Core 1:        +39.0°C  (high = +84.0°C, crit = +100.0°C)
+Core 2:        +39.0°C  (high = +84.0°C, crit = +100.0°C)
+Core 3:        +42.0°C  (high = +84.0°C, crit = +100.0°C)
+'''
 temp=[]
 core_num = 4
 for i in range(4):

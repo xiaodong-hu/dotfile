@@ -1,0 +1,8 @@
+<snippet>
+	<description>bare bigg-bigg</description>
+	<content><![CDATA[
+\bigg$1$0\bigg$2
+]]></content>
+	<tabTrigger>bg</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

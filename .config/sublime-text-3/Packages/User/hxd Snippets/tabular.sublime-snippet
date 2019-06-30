@@ -1,0 +1,11 @@
+<snippet>
+	<description>tabular</description>
+	<content><![CDATA[
+\begin{tabular}{${1:c|cc}}
+	$0
+	\hline
+\end{tabular}
+]]></content>
+	<tabTrigger>tab</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

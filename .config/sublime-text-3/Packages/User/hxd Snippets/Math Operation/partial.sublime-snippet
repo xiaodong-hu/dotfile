@@ -1,0 +1,8 @@
+<snippet>
+	<description>partial</description>
+	<content><![CDATA[
+\partial 
+]]></content>
+	<tabTrigger>p</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

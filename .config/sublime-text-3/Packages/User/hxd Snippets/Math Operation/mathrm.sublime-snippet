@@ -1,0 +1,8 @@
+<snippet>
+	<description>mathrm</description>
+	<content><![CDATA[
+\mathrm{$1} 
+]]></content>
+	<tabTrigger>rm</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+	<description>langle</description>
+	<content><![CDATA[
+\langle 
+]]></content>
+	<tabTrigger>lg</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

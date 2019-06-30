@@ -1,0 +1,8 @@
+<snippet>
+	<description>varphi</description>
+	<content><![CDATA[
+\varphi
+]]></content>
+	<tabTrigger>ph</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

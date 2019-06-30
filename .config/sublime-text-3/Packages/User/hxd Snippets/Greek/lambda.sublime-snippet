@@ -1,0 +1,8 @@
+<snippet>
+	<description>lambda</description>
+	<content><![CDATA[
+\lambda
+]]></content>
+	<tabTrigger>l</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

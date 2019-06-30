@@ -1,0 +1,8 @@
+<snippet>
+	<description>rangle</description>
+	<content><![CDATA[
+\rangle 
+]]></content>
+	<tabTrigger>rg</tabTrigger>
+	<scope>text.tex.latex</scope>
+</snippet>

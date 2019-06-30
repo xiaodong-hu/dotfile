@@ -2,33 +2,20 @@ import collections
 import copy
 import hashlib
 import os
+import pickle
 import re
 import shutil
-import time
 import threading
+import time
 import traceback
-
-try:
-    import cPickle as pickle
-except ImportError:
-    import pickle
 
 import sublime
 
-if sublime.version() < '3000':
-    _ST3 = False
-    from latextools_utils import get_setting
-    from external.frozendict import frozendict
-    from latextools_utils.six import unicode, long, strbase
-    from latextools_utils.system import make_dirs
-    from latextools_utils.utils import ThreadPool
-else:
-    _ST3 = True
-    from . import get_setting
-    from ..external.frozendict import frozendict
-    from .six import unicode, long, strbase
-    from .system import make_dirs
-    from .utils import ThreadPool
+from . import get_setting
+from ..external.frozendict import frozendict
+from .six import unicode, long, strbase
+from .system import make_dirs
+from .utils import ThreadPool
 
 
 # the folder, if the local cache is not hidden, i.e. folder in the same
@@ -180,21 +167,35 @@ cache = cache_local
 write = write_local
 read = read_local
 
-if _ST3:
-    def _global_cache_path():
-        return os.path.normpath(os.path.join(
-            sublime.cache_path(), "LaTeXTools", "internal"))
-else:
-    def _global_cache_path():
-        return os.path.normpath(os.path.join(
-            sublime.packages_path(), "User", ST2_GLOBAL_CACHE_FOLDER))
+
+def _global_cache_path():
+    return os.path.normpath(os.path.join(
+        sublime.cache_path(), "LaTeXTools", "internal"))
 
 
-# marker object for invalidated result
+# marker class for invalidated result
+class InvalidObject(object):
+    _HASH = hash("_LaTeXTools_InvalidObject")
+
+    def __eq__(self, other):
+        # in general, this is a bad pattern, since it will treat the
+        # literal string "_LaTeXTools_InvalidObject" as being an invalid
+        # object; nevertheless, we need an object identity that persists
+        # across reloads, and this seems to be the only way to guarantee
+        # that
+        return self._HASH == hash(other)
+
+    def __ne__(self, other):
+        return not self == other
+
+    def __hash__(self):
+        return self._HASH
+
+
 try:
     _invalid_object
 except NameError:
-    _invalid_object = object()
+    _invalid_object = InvalidObject()
 
 
 class Cache(object):
@@ -248,7 +249,7 @@ class Cache(object):
             # note: will raise CacheMiss if can't be found
             result = self.load(key)
 
-        if result is _invalid_object:
+        if result == _invalid_object:
             raise CacheMiss('{0} is invalid'.format(key))
 
         # return a copy of any objects
@@ -272,7 +273,7 @@ class Cache(object):
 
         return (
             key in self._objects and
-            self._objects[key] is not _invalid_object
+            self._objects[key] != _invalid_object
         )
 
     def set(self, key, obj):
@@ -416,17 +417,22 @@ class Cache(object):
         with self._disk_lock:
             # operate on a stable copy of the object
             with self._write_lock:
-                _objs = copy.deepcopy(self._objects)
+                _objs = pickle.loads(pickle.dumps(self._objects, protocol=-1))
                 self._dirty = False
 
             if key is None:
                 # remove all InvalidObjects
                 delete_keys = [
-                    k for k in _objs if _objs[k] is _invalid_object
+                    k for k in _objs if _objs[k] == _invalid_object
                 ]
 
                 for k in delete_keys:
                     del _objs[k]
+                    file_path = os.path.join(self.cache_path, key)
+                    try:
+                        os.path.remove(file_path)
+                    except OSError:
+                        pass
 
                 if _objs:
                     make_dirs(self.cache_path)
@@ -444,7 +450,7 @@ class Cache(object):
                             'error while deleting {0}'.format(self.cache_path))
                         traceback.print_exc()
             elif key in _objs:
-                if _objs[key] is _invalid_object:
+                if _objs[key] == _invalid_object:
                     file_path = os.path.join(self.cache_path, key)
                     try:
                         os.path.remove(file_path)
@@ -459,7 +465,10 @@ class Cache(object):
         '''
         an async version of save; does the save in a new thread
         '''
-        self._pool.apply_async(self.save, key)
+        try:
+            self._pool.apply_async(self.save, key)
+        except ValueError:
+            pass
 
     def _write(self, key, obj):
         try:

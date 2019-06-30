@@ -1,0 +1,135 @@
+{
+        "scope": "text.tex.latex string.other.math, text.tex.latex meta.environment.math",
+
+        "completions":
+        [
+		// Greek
+		{ "trigger": "a", "contents": "\\alpha" },
+		{ "trigger": "b", "contents": "\\beta" },
+		{ "trigger": "g", "contents": "\\gamma" },
+		{ "trigger": "del", "contents": "\\delta" },
+		{ "trigger": "r", "contents": "\\rho" },
+		{ "trigger": "t", "contents": "\\tau" },
+		{ "trigger": "k", "contents": "\\kappa" },
+		{ "trigger": "m", "contents": "\\mu" },
+		{ "trigger": "n", "contents": "\\nu" },
+		{ "trigger": "x", "contents": "\\xi" },
+		{ "trigger": "th", "contents": "\\theta" },
+		{ "trigger": "z", "contents": "\\zeta"},
+                { "trigger": "c", "contents": "\\chi" },
+		//double toggle
+		{ "trigger": "s", "contents": "\\sigma" }
+		{ "trigger": "\\sigma", "contents": "\\Sigma" }
+		{ "trigger": "\\Sigma", "contents": "\\sigma" }
+		// double toggle
+		{ "trigger": "ph", "contents": "\\varphi" },
+                { "trigger": "\\varphi", "contents": "\\phi" }, 
+                { "trigger": "\\phi", "contents": "\\varphi" },
+		// double toggle 
+                { "trigger": "ps", "contents": "\\psi" },
+                { "trigger": "\\psi", "contents": "\\Psi" },
+                { "trigger": "\\Psi", "contents": "\\psi" },
+		// double toggle
+                { "trigger": "o", "contents": "\\omega" },
+                { "trigger": "\\omega", "contents": "\\Omega" },
+                { "trigger": "\\Omega", "contents": "\\omega" },
+		// double toggle
+                { "trigger": "l", "contents": "\\lambda" },
+                { "trigger": "\\lambda", "contents": "\\Lambda" },
+                { "trigger": "\\Lambda", "contents": "\\lambda" },
+		// double toggle
+		{ "trigger": "e", "contents": "\\varepsilon" },
+		{ "trigger": "\\varepsilon", "contents": "\\epsilon" },
+		{ "trigger": "\\epsilon", "contents": "\\varepsilon" },
+		//{ "trigger": "h", "contents": "\\eta" },
+                //{ "trigger": "i", "contents": "\\iota" },
+                //{ "trigger": "p", "contents": "\\pi" },
+                //{ "trigger": "u", "contents": "\\upsilon" },
+                //{ "trigger": "v", "contents": "\\digamma"},
+
+
+	// Basic Math Operator
+		{ "trigger": "d", "contents": "\\dd " },
+		{ "trigger": "d", "contents": "\\dd " },
+		{ "trigger": "f", "contents": "\\frac{$1}{$2}" }
+		{ "trigger": "df", "contents": "\\dfrac{$1}{$2}" }
+                { "trigger": "lg", "contents": "\\langle"},
+                { "trigger": "rg", "contents": "\\rangle"},
+                
+		/*
+                { "trigger": "0", "contents": "\\emptyset" },
+                { "trigger": "V", "contents": "\\forall" },
+                { "trigger": "E", "contents": "\\exists" },
+                { "trigger": "sm", "contents": "\\setminus" },
+                { "trigger": "ld", "contents": "\\ldots" },
+                { "trigger": "cd", "contents": "\\cdot" },
+                { "trigger": "cdot", "contents": "cdots" },
+                { "trigger": "cdots", "contents": "cdot"},
+		*/
+
+                { "trigger": "cu", "contents": "\\cup"},
+                { "trigger": "ca", "contents": "\\cap"},
+                { "trigger": "bcu", "contents": "\\bigcup"},
+                { "trigger": "bca", "contents": "\\bigcap"},
+
+	        { "trigger": "in", "contents": "\\int"},
+        	{ "trigger": "int", "contents": "\\infty"},
+        	{ "trigger": "infty", "contents": "\\int"},
+
+		{ "trigger": "su", "contents": "\\sum"},
+		{ "trigger": "sum", "contents": "sup"},
+		{ "trigger": "sup", "contents": "succ"},
+		{ "trigger": "succ", "contents": "succeq"},
+		{ "trigger": "succeq", "contents": "succcurlyeq"},
+		{ "trigger": "succcurlyeq", "contents": "sum"},
+
+                { "trigger": "qd", "contents": "\\quad"},
+                { "trigger": "qqd", "contents": "\\qquad"},
+
+		{ "trigger": "pr", "contents": "\\prod"},
+		{ "trigger": "prod", "contents": "prec"},
+		{ "trigger": "prec", "contents": "preceq"},
+		{ "trigger": "preceq", "contents": "preccurlyeq"},
+		{ "trigger": "preccurlyeq", "contents": "prod"},
+
+		{ "trigger": "lar", "contents": "\\leftarrow"},
+		{ "trigger": "leftarrow", "contents": "leftarrow"},
+		{ "trigger": "longleftarrow", "contents": "longleftarrow"},
+		{ "trigger": "Lar", "contents": "\\Leftarrow"},
+		{ "trigger": "Leftarrow", "contents": "Leftarrow"},
+		{ "trigger": "Longleftarrow", "contents": "Longleftarrow"},
+		{ "trigger": "rar", "contents": "\\rightarrow"},
+		{ "trigger": "rightarrow", "contents": "rightarrow"},
+		{ "trigger": "longrightarrow", "contents": "longrightarrow"},
+		{ "trigger": "Rar", "contents": "\\Rightarrow"},
+		{ "trigger": "Rightarrow", "contents": "Rightarrow"},
+		{ "trigger": "Longrightarrow", "contents": "Longrightarrow"},
+		{ "trigger": "lr", "contents": "\\leftrightarrow"},
+		{ "trigger": "Lr", "contents": "\\Leftrightarrow"},
+		{ "trigger": "iff", "contents": "\\Leftrightarrow"},
+		{ "trigger": "leftrightarrow", "contents": "leftrightarrow"},
+		{ "trigger": "Leftrightarrow", "contents": "Leftrightarrow"},
+		{ "trigger": "longleftrightarrow", "contents": "longleftrightarrow"}, 
+		{ "trigger": "Longleftrightarrow", "contents": "Longleftrightarrow"}, 
+                { "trigger": "up", "contents": "\\uparrow"},
+		{ "trigger": "do", "contents": "\\downarrow"},
+
+                { "trigger": "it", "contents": "\\mathit{$1}$0"},
+                { "trigger": "bf", "contents": "\\mathbf{$1}$0"},
+                { "trigger": "bb", "contents": "\\mathbb{$1}$0"},
+                { "trigger": "rm", "contents": "\\mathrm{$1}$0"},
+                { "trigger": "sf", "contents": "\\mathsf{$1}$0"},
+                { "trigger": "cal", "contents": "\\mathcal"},
+                { "trigger": "mathcal", "contents": "mathcal{$1}$0"},
+
+                { "trigger": "lp", "contents": "\\left( $1 \\right) $0"},
+                { "trigger": "lb", "contents": "\\left[ $1 \\right] $0"},
+                { "trigger": "lbr", "contents": "\\left\\\\{ $0 \\right\\\\}"},
+                { "trigger": "fr", "contents": "\\frac"},
+                { "trigger": "fra", "contents": "\\frac{$1}{$2}$0"},
+                { "trigger": "stack", "contents": "\\stackrel{$1}{$2}$0"},
+
+                { "trigger": "sp", "contents": "\\begin{split}\n$0\n\\end{split}\n"}
+
+        ]
+}

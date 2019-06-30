@@ -1,0 +1,5 @@
+{
+	"build_action": "preview",//default is just "build"
+	"enable_mathjax": true,
+	"enable_highlight": true
+}

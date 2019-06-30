@@ -1,11 +1,15 @@
 # 开机自动打开i3
 #[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
-# Ruby 环境（用于 gem install）
-export PATH=$PATH:/home/hxd/.gem/ruby/2.4.0/bin
+# 改 hosts
+alias hosts='sudo wget https://raw.githubusercontent.com/racaljk/hosts/master/hosts -O /etc/hosts'
 
-# Sabaki
-alias sabaki="/home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage"
+export PATH=/home/hxd/.gem/ruby/2.5.0/bin:$PATH
+
+
+# sdcv 读取 stardict 词典
+alias dict="python /home/hxd/bing-dict/bing.py"
+
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH

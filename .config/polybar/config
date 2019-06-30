@@ -285,7 +285,7 @@ label-underline = ${hexadecimal.Magenta}
 [module/fortune]
 type = internal/cpu 
 interval = 10
-label =  Think Ahead.
+label =  Think Like Electrons.
 format-underline = #FFFFFF
 
 

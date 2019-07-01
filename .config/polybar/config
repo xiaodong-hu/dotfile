@@ -143,7 +143,7 @@ font-3 = Font Awesome 5 Brands:style=Solid:size=14;2
 font-4 = Font Awesome 5 Free:style=Solid:size=14;2
 font-5 = Font Awesome 5 Free:style=Solid:size=14;2
 
-modules-left = mpd volume filesystem-slash filesystem-home
+modules-left = volume filesystem-slash filesystem-home
 modules-center = networkspeedup networkspeeddown
 modules-right = Average-CPU-Temperature cpu_pic memory 
 

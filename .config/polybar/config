@@ -154,7 +154,7 @@ tray-padding = 2
 
 [module/xwindow]
 type = internal/xwindow
-label = " %{F#5b5b5b}%{F-} %title:0:80:...%"
+label = " %{F#5b5b5b}%{F-} %title:0:50:...%"
 
 
 

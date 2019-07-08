@@ -92,9 +92,9 @@ set $4 "  File  "
 set $5 "  Music  "
 set $6 "  Movie  "
 set $7 "  Mathematica  "
-set $8 "  Wechat  "
-set $9 "  Windows  "
-set $0 "  Sabaki  "
+set $8 "  Chat  |  |  "
+set $9 "  Virtualbox  |  "
+set $0 "  Sabaki  "
 
 # switch to workspace
 bindsym $mod+1 workspace $1
@@ -243,15 +243,12 @@ bindsym Mod4+6 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/6.png
 bindsym Mod4+7 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/7.jpg
 bindsym Mod4+8 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/8.png
 bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
-bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/0.jpg
-bindsym Mod4+shift+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
-bindsym Mod4+shift+2 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/11.png
-bindsym Mod4+shift+3 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/12.jpg
+bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
 
 
 #==============开机自启================
 ## 壁纸(须先安装feh) 
-exec --no-startup-id feh --bg-fill /home/hxd/Pictures/Random\ Desktop/1.jpg
+exec --no-startup-id feh --bg-fill /home/hxd/Pictures/Random\ Desktop/4.png
 ## 10分钟自动熄屏
 exec --no-startup-id xset dpms 600
 

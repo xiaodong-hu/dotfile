@@ -87,7 +87,7 @@ bindsym $mod+a focus parent
 # set workspace names
 set $1 "  Code  "
 set $2 "  PDF  "
-set $3 "  Chrome  "
+set $3 "  Firefox  "
 set $4 "  File  "
 set $7 "  Music  "
 set $6 "  Movie  "

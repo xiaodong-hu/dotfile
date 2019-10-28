@@ -85,14 +85,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = hack:pixelsize=12;2
+font-0 = ubuntu-font:size=16:1
 font-1 = unifont:size=10;2
 font-2 = siji:pixelsize=10;3
 font-3 = Font Awesome 5 Brands:style=Solid:size=20;2
 font-4 = Font Awesome 5 Free:style=Solid:size=20;2
 font-5 = Font Awesome 5 Free:style=Solid:size=20;2
 
-modules-left =  i3 xwindow
+modules-left =  rofi i3 xwindow
 modules-center = date
 modules-right = cpu_num RAM battery-tlp fortune
 
@@ -136,7 +136,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = hack:pixelsize=12;2
+font-0 = ubuntu-font:size=16;1
 font-1 = unifont:size=10;2
 font-2 = siji:pixelsize=10;3
 font-3 = Font Awesome 5 Brands:style=Solid:size=20;2
@@ -187,7 +187,6 @@ type = internal/i3
 ; on different bars
 ; Default: false
 pin-workspaces = false
-
 
 enable-click = true
 ;;容许点击切换工作区
@@ -317,6 +316,15 @@ type = internal/cpu
 interval = 10
 label =  Think Like Electrons.
 format-underline = #FFFFFF
+
+
+[module/rofi]
+type = custom/script
+exec = echo "  "
+click-left = rofi -show run
+format-padding = 1
+
+
 
 
 

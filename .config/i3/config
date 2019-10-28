@@ -129,7 +129,7 @@ bindsym $mod+Shift+0 move container to workspace 0
 exec --no-startup-id fcitx
 
 ## 壁纸(须先安装feh) 
-exec --no-startup-id feh --bg-fill /home/hxd/Pictures/j2-test.png
+exec --no-startup-id feh --bg-fill /home/hxd/Pictures/Random\ Desktop/6.png
 ## 10分钟自动熄屏
 exec --no-startup-id xset dpms 600
 
@@ -147,7 +147,7 @@ exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 
 # Onboard
-exec --no-startup-id onboard &
+# exec --no-startup-id onboard &
 
 
 # Dropobox

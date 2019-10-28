@@ -84,64 +84,106 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 #=============== Workspaces ===============
-# set workspace names
-set $1 "  Code  "
-set $2 "  PDF  "
-set $3 "  Firefox  "
-set $4 "  File  "
-set $7 "  Music  "
-set $6 "  Movie  "
-set $5 "  Mathematica  "
-set $8 "  Chat  |  |  "
-set $9 "  Virtualbox  |  "
-set $0 "  Sabaki  "
+# Set workspace names
+# 这一部分由 Polybar 的 i3module 实现
+# 以便 i3-msg 的工作区切换与移动
+# set $1 "  Code  "
+# set $2 "  PDF  "
+# set $3 "  Firefox  "
+# set $4 "  File  "
+# set $7 "  Music  "
+# set $6 "  Movie  "
+# set $5 "  Mathematica  "
+# set $8 "  Chat  |  |  "
+# set $9 "  Virtualbox  |  "
+# set $0 "  Sabaki  "
 
-# switch to workspace
-bindsym $mod+1 workspace $1
-bindsym $mod+2 workspace $2
-bindsym $mod+3 workspace $3
-bindsym $mod+4 workspace $4
-bindsym $mod+5 workspace $5
-bindsym $mod+6 workspace $6
-bindsym $mod+7 workspace $7
-bindsym $mod+8 workspace $8
-bindsym $mod+9 workspace $9
-bindsym $mod+0 workspace $0
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 0
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $1
-bindsym $mod+Shift+2 move container to workspace $2
-bindsym $mod+Shift+3 move container to workspace $3
-bindsym $mod+Shift+4 move container to workspace $4
-bindsym $mod+Shift+5 move container to workspace $5
-bindsym $mod+Shift+6 move container to workspace $6
-bindsym $mod+Shift+7 move container to workspace $7
-bindsym $mod+Shift+8 move container to workspace $8
-bindsym $mod+Shift+9 move container to workspace $9
-bindsym $mod+Shift+0 move container to workspace $0
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 0
+
+
+
+#==============开机自启================
+# 启动fcitx
+exec --no-startup-id fcitx
+
+## 壁纸(须先安装feh) 
+exec --no-startup-id feh --bg-fill /home/hxd/Pictures/j2-test.png
+## 10分钟自动熄屏
+exec --no-startup-id xset dpms 600
+
+# 终端透明（compton 似有 bug，功耗大）
+# exec --no-startup-id compton &
+exec --no-startup-id xcompmgr -c -f -n
+
+# 角标NetworkManager
+exec_always --no-startup-id nm-applet &
+
+# xfce4 电池管理
+exec_always --no-startup-id xfce4-power-manager
+
+# blueman 蓝牙管理
+exec_always --no-startup-id blueman-applet
+
+# Onboard
+exec --no-startup-id onboard &
+
+
+# Dropobox
+exec --no-startup-id dropbox &
 
 exec --no-startup-id termite
 
-assign [class="Thunar"] $4
-exec --no-startup-id thunar
 
-assign [class="Subl3"] $1
+exec --no-startup-id Thunar
+assign [class="Thunar"] 4
 
-assign [class="Vivaldi-stable"] $3
-assign [class="google-chrome-stable"] $3
+assign [class="sublime_text"] 1
 
-assign [class="Forxit Reader"] $2
-assign [class="Evince"] $2
+# assign [class="Vivaldi-stable"] $ws3
+assign [class="google-chrome"] 3
+
+assign [class="Forxit Reader"] 2
+assign [class="Evince"] 2
 # exec --no-startup-id evince
 
-assign [class="Sabaki"] $0
+assign [class="Sabaki"] 0
 # exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
 
-assign [class="VirtualBox"] $9
+assign [class="VirtualBox"] 9
 # for_window [class="VirtualBox Machine"] floating enable
 
 
-assign [class="electronic-wechat"] $8
+assign [class="electronic-wechat"] 8
+
+
+
+
+
+# start polybar
+exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
+
 
 
 
@@ -182,7 +224,7 @@ bindsym $mod+r mode "resize"
 
 
 # Pixel boder is necessary to show the focused window (配合下面的client.focused 的 background and indicator)
-for_window [tiling] border pixel 1.5
+for_window [tiling] border pixel 2
 
 # Window Colors
 # client				border				background				text					indicator
@@ -213,15 +255,18 @@ mode "$mode_system" {
 focus_follows_mouse no
 
 #===============窗口间距===============
-gaps inner 10
-gaps outer 35 # 配合 polybar 的 override direct 容许的 offset
+gaps inner 20
+gaps top 35
+gaps bottom 35
+
+# border & title.. Must be set to border pixel for gaps to work
+for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
+
+#配合 polybar 的 override direct 容许的 offset
 #smart_gaps on #must be disabled, otherwise will counteract with the offset of polybar
 
 #===============锁屏快捷键=============
 # bindsym $mod+shift+l exec i3lock -i /home/hxd/Pictures/arch-image.png
-
-#===============自动启动fcitx==========
-exec --no-startup-id fcitx
 
 
 #===============音量调节===============
@@ -244,27 +289,3 @@ bindsym Mod4+7 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/7.jpg
 bindsym Mod4+8 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/8.png
 bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
 bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
-
-
-#==============开机自启================
-## 壁纸(须先安装feh) 
-exec --no-startup-id feh --bg-fill /home/hxd/Pictures/Random\ Desktop/4.png
-## 10分钟自动熄屏
-exec --no-startup-id xset dpms 600
-
-# 终端透明（compton 似有 bug，功耗大）
-# exec --no-startup-id compton &
-exec --no-startup-id xcompmgr -c -f -n
-
-# 角标NetworkManager
-exec_always --no-startup-id nm-applet &
-
-# xfce4 电池管理
-exec_always --no-startup-id xfce4-power-manager
-
-# blueman 蓝牙管理
-exec_always --no-startup-id blueman-applet
-
-# start polybar
-#exec_always python ~/.config/polybar/launch.py
-exec_always bash ~/.config/polybar/launch.sh

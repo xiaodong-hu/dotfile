@@ -66,10 +66,10 @@ monitor = ${env:MONITOR}
 monitor-strict = true
 dpi = 72
 bottom = false
-width = 98%
-height = 25
-offset-x = 1%
-offset-y = 1%
+;width = 98%
+height = 40
+;offset-x = 1%
+;offset-y = 1%
 ;background = ${xrdb:color9}
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -85,12 +85,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Monospace:pixelsize=14;2
+font-0 = hack:pixelsize=12;2
 font-1 = unifont:size=10;2
 font-2 = siji:pixelsize=10;3
-font-3 = Font Awesome 5 Brands:style=Solid:size=14;2
-font-4 = Font Awesome 5 Free:style=Solid:size=14;2
-font-5 = Font Awesome 5 Free:style=Solid:size=14;2
+font-3 = Font Awesome 5 Brands:style=Solid:size=20;2
+font-4 = Font Awesome 5 Free:style=Solid:size=20;2
+font-5 = Font Awesome 5 Free:style=Solid:size=20;2
 
 modules-left =  i3 xwindow
 modules-center = date
@@ -113,10 +113,10 @@ monitor = ${env:MONITOR}
 monitor-strict = true
 dpi = 72
 bottom = true
-width = 98%
-height = 20
-offset-x = 1%
-offset-y = 1%
+lwidth = 98%
+height = 40
+;offset-x = 1%
+;offset-y = 1%
 wm-restack = i3
 ;使得i3窗口全屏时位于底层
 override-redirect = true
@@ -139,13 +139,13 @@ module-margin-right = 2
 font-0 = hack:pixelsize=12;2
 font-1 = unifont:size=10;2
 font-2 = siji:pixelsize=10;3
-font-3 = Font Awesome 5 Brands:style=Solid:size=14;2
-font-4 = Font Awesome 5 Free:style=Solid:size=14;2
-font-5 = Font Awesome 5 Free:style=Solid:size=14;2
+font-3 = Font Awesome 5 Brands:style=Solid:size=20;2
+font-4 = Font Awesome 5 Free:style=Solid:size=20;2
+font-5 = Font Awesome 5 Free:style=Solid:size=20;2
 
-modules-left = volume filesystem-slash filesystem-home
-modules-center = networkspeedup networkspeeddown
-modules-right = Average-CPU-Temperature cpu_pic memory 
+modules-left = volume filesystem-slash filesystem-home touchkeyboard
+modules-center = networkspeedup networkspeeddown screenrotate screenrefresh
+modules-right = Average-CPU-Temperature cpu_pic memory
 
 tray-position = right
 tray-padding = 2
@@ -180,30 +180,60 @@ label-mounted = "%{F#5b5b5b}ROOT%{F-}  %percentage_used%%"
 
 [module/i3]
 ;see wiki for more details
-
 type = internal/i3
-index-sort = false
-enable-click = false
+
+; Only show workspaces defined on the same output as the bar
+; Useful if you want to show monitor specific workspaces
+; on different bars
+; Default: false
+pin-workspaces = false
+
+
+enable-click = true
+;;容许点击切换工作区
+
 enable-scroll = false
 wrapping-scroll = false
 reverse-scroll = false
+
 strip-wsnumbers = true
-pin-workspaces = true
+
+index-sort = false
+
 format = <label-state> <label-mode>
 label-mode-padding = 2
 label-mode = %mode%
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
-label-focused = %name%
+
+;; 综合参见 https://github.com/polybar/polybar/issues/1488 和 https://github.com/polybar/polybar/issues/533
+;; 此处用 Polybar 代替 i3 工作区显示(以便 i3-msg 的工作区切换与移动)
+
+ws-icon-0 = 1; Code  
+ws-icon-1 = 2; PDF  
+ws-icon-2 = 3; Firefox  
+ws-icon-3 = 4; File  
+ws-icon-4 = 5; Music  
+ws-icon-5 = 6; Movie  
+ws-icon-6 = 7; Mathematica  
+ws-icon-7 = 8; Chat  |  |  
+ws-icon-8 = 9; Virtualbox  |  
+ws-icon-9 = 0; Sabaki  
+
+label-focused = %icon%
 label-focused-background = ${colors.background}
 label-focused-underline = ${hexadecimal.White}
 label-focused-padding = 2
 
-label-unfocused = %name%
+label-unfocused = %icon%
 label-unfocused-padding = 2
+
+
 label-urgent = %name%!
 label-urgent-background = #bd2c40
 label-urgent-padding = 2
+
+label-visible = %icon%
 
 
 
@@ -389,7 +419,7 @@ exec = ~/.config/polybar/weather
 
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 enable-click = false
 format-volume = <label-volume> <bar-volume>
 label-volume = " "
@@ -435,3 +465,188 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+
+
+[module/i3touchmenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+;; Open the menu
+label-open = "  "
+label-open-foreground = #FFF
+;; Close the menu
+label-close = 
+label-close-foreground = ${colors.secondary}
+label-separator = "    "
+label-separator-foreground = ${colors.foreground-alt}
+;; Launcher
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
+;; Move
+menu-0-1 = 
+menu-0-1-exec = menu-open-2
+;; Layout
+menu-0-2 = 
+menu-0-2-exec = menu-open-3
+;; Split
+menu-0-3 = 
+menu-0-3-exec = menu-open-4
+;; Resize
+menu-0-4 = 
+menu-0-4-exec = menu-open-5
+;; Move to workspace
+menu-0-5 = 
+menu-0-5-exec = menu-open-6
+;; Kill
+menu-0-6 = 
+menu-0-6-exec = menu-open-7
+;; Power
+menu-0-7 =  
+menu-0-7-exec = menu-open-8
+;; Launcher: Back to main menu
+menu-1-0 = 
+menu-1-0-exec = menu-open-0
+;; Launcher: firefox
+menu-1-1= 
+menu-1-1-exec= firefox &
+;; Launcher: termite
+menu-1-2= 
+menu-1-2-exec = termite &
+;; Move: Back to main menu
+menu-2-0 = 
+menu-2-0-exec = menu-open-0
+;; Move: Left
+menu-2-1 = 
+menu-2-1-exec = i3-msg 'move left'
+;; Move: Right
+menu-2-2 = 
+menu-2-2-exec = i3-msg 'move right'
+;; Move: Up
+menu-2-3 = 
+menu-2-3-exec = i3-msg 'move up'
+;; Move: Down
+menu-2-4 =  
+menu-2-4-exec = i3-msg 'move down'
+;; Layout: Back to main menu
+menu-3-0 = 
+menu-3-0-exec = menu-open-0
+;; Layout: Split
+menu-3-1 = 
+menu-3-1-exec = i3-msg 'layout toggle split'
+;; Layout: Stacking
+menu-3-2 = 
+menu-3-2-exec = i3-msg 'layout stacking'
+;; Layout: Tabbed
+menu-3-3 =     
+menu-3-3-exec = i3-msg 'layout tabbed'
+;; Layout: Toggle floating
+menu-3-4 = 
+menu-3-4-exec = i3-msg 'floating toggle'
+;; Split: Back to main menu
+menu-4-0 = 
+menu-4-0-exec = menu-open-0
+;; Split: Vertical
+menu-4-1 = 
+menu-4-1-exec = i3-msg 'split v'
+;; Split: Horizontal
+menu-4-2 =  
+menu-4-2-exec = i3-msg 'split h'
+;; Resize: Back to main menu
+menu-5-0 = 
+menu-5-0-exec = menu-open-0
+;; Resize: Grow height
+menu-5-1 = 
+menu-5-1-exec = i3-msg 'resize grow height 5 px or 5 ppt'
+;; Resize: Shrink height
+menu-5-2 = 
+menu-5-2-exec = i3-msg 'resize shrink height 5 px or 5 ppt'
+;; Resize: Grow width
+menu-5-3 = 
+menu-5-3-exec = i3-msg 'resize grow width 5 px or 5 ppt'
+;; Resize: Shrink width
+menu-5-4 =  
+menu-5-4-exec = i3-msg 'resize shrink width 5 px or 5 ppt'
+;; Move to workspace: Back to main menu
+menu-6-0 = 
+menu-6-0-exec = menu-open-0
+;; Move to workspace: 1
+menu-6-1 = 1
+menu-6-1-exec = i3-msg 'workspace $1'
+;; Move container to workspace $1
+;; Move to workspace: 2
+menu-6-2 = 2
+menu-6-2-exec = i3-msg 'workspace $2'
+;; Move to workspace: 3
+menu-6-3 = 3
+menu-6-3-exec = i3-msg 'workspace $3'
+;; Move to workspace: 4
+menu-6-4 = 4
+menu-6-4-exec = i3-msg 'workspace $4'
+;; Move to workspace: 5
+menu-6-5 = 5
+menu-6-5-exec = i3-msg 'workspace $5'
+;; Move to workspace: 6
+menu-6-6 = 6
+menu-6-6-exec = i3-msg 'workspace $6'
+;; Move to workspace: 7
+menu-6-7 = 7
+menu-6-7-exec = i3-msg 'workspace $7'
+;; Move to workspace: 8
+menu-6-8 = 8
+menu-6-8-exec = i3-msg 'workspace $8'
+;; Move to workspace: 9
+menu-6-9 = 9
+menu-6-9-exec = i3-msg 'workspace $9'
+;; Move to workspace: 10
+menu-6-10 = 10 
+menu-6-10-exec = i3-msg 'workspace $0'
+;; Kill: Back to main menu
+menu-7-0 = 
+menu-7-0-exec = menu-open-0
+;; Kill: Kill
+menu-7-1 = "You sure?        "
+menu-7-1-exec = i3-msg 'kill'
+;; Power: Back to main menu
+menu-8-0 = 
+menu-8-0-exec = menu-open-0
+;; Power: Screen off
+menu-8-1 = 
+menu-8-1-exec = xset dpms force off 
+;; Power: Lock
+menu-8-2 = 
+menu-8-2-exec = i3lock
+;; Power: Reboot
+menu-8-3 = 
+menu-8-3-exec = shutdown -r now
+;; Power: Shutdown
+menu-8-4 = "  "
+menu-8-4-exec = shutdown -h now
+
+
+
+[module/touchkeyboard]
+;; Open onscreen keyboard (onboard)
+type=custom/text
+content="  "
+content-foreground=#fff
+click-left= dbus-send --type=method_call --print-reply --dest=org.onboard.Onboard /org/onboard/Onboard/Keyboard org.onboard.Onboard.Keyboard.ToggleVisible
+
+
+
+
+[module/screenrotate]
+;; Restart i3 in order to redraw polybar to fit screen orientation
+type=custom/text
+content = "  "
+content-foreground=#fff
+;; exec = bash /home/hxd/.config/polybar/rotate.sh
+;; click-left = i3-msg 'restart'
+click-left = bash /home/hxd/rotate.sh
+
+[module/screenrefresh]
+;; Restart i3 in order to redraw polybar to fit screen orientation
+type=custom/text
+content = "  "
+content-foreground=#fff
+click-left = bash /home/hxd/.config/polybar/restart.sh

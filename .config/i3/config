@@ -98,7 +98,7 @@ bindsym $mod+a focus parent
 # set $9 "  Virtualbox  |  "
 # set $10 "  Sabaki  "
 
-# Switch to workspace
+# Switch to workspace (can be larger than 10)
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -109,6 +109,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym Mod4+1 workspace 11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -120,7 +121,8 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 0
+bindsym $mod+Shift+0 move container to workspace 10
+bindsym Mod4+Shift+1 move container to workspace 11
 
 
 
@@ -131,7 +133,7 @@ exec --no-startup-id fcitx
 ## 壁纸(须先安装feh) 
 exec --no-startup-id feh --bg-fill /home/hxd/Pictures/j2-test.png
 ## 10分钟自动熄屏
-exec --no-startup-id xset dpms 600
+exec --no-startup-id xset dpms 600 900
 
 # 终端透明（compton 似有 bug，功耗大）
 # exec --no-startup-id compton &
@@ -168,7 +170,7 @@ assign [class="Forxit Reader"] 2
 assign [class="Evince"] 2
 # exec --no-startup-id evince
 
-assign [class="Sabaki"] 0
+assign [class="Sabaki"] 10
 # exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
 
 assign [class="VirtualBox"] 9
@@ -279,13 +281,13 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 
 
 #===============手动壁纸切换============
-bindsym Mod4+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/1.jpg
-bindsym Mod4+2 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/2.jpg
-bindsym Mod4+3 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/3.jpg
-bindsym Mod4+4 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/4.png
-bindsym Mod4+5 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/5.png
-bindsym Mod4+6 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/6.png
-bindsym Mod4+7 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/7.jpg
-bindsym Mod4+8 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/8.png
-bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
-bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
+#bindsym Mod4+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/1.jpg
+#bindsym Mod4+2 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/2.jpg
+#bindsym Mod4+3 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/3.jpg
+#bindsym Mod4+4 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/4.png
+#bindsym Mod4+5 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/5.png
+#bindsym Mod4+6 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/6.png
+#bindsym Mod4+7 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/7.jpg
+#bindsym Mod4+8 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/8.png
+#bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
+#bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg

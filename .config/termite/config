@@ -1,5 +1,5 @@
 [options]
-font = Monospace 14
+font = Source Code Pro 14
 scrollback_lines = 1000000
 
 ##

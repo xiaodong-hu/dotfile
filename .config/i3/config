@@ -9,6 +9,10 @@ set $urgent-bg-color     #E53935
 set $mod Mod1
 # Mod4 is win, Mod1 is Alt
 
+
+exec_always --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --above eDP1
+
+
 # start a terminal
 bindsym $mod+Return exec termite
 new_window none # make the new window with no pixels, IMPORTANT to beautify
@@ -64,7 +68,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym Mod4+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -109,7 +113,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-bindsym Mod4+1 workspace 11
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -122,7 +126,6 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-bindsym Mod4+Shift+1 move container to workspace 11
 
 
 
@@ -131,7 +134,7 @@ bindsym Mod4+Shift+1 move container to workspace 11
 exec --no-startup-id fcitx
 
 ## 壁纸(须先安装feh) 
-exec --no-startup-id feh --bg-fill /home/hxd/Pictures/j2-test.png
+exec --no-startup-id feh --bg-fill /home/hxd/Pictures/"Anime Wallpaper"/"Mai Sakurajima.png"
 ## 10分钟自动熄屏
 exec --no-startup-id xset dpms 600 900
 
@@ -149,7 +152,7 @@ exec_always --no-startup-id xfce4-power-manager
 exec_always --no-startup-id blueman-applet
 
 # Onboard
-exec --no-startup-id onboard &
+# exec --no-startup-id onboard &
 
 
 # Dropobox

@@ -1,0 +1,5 @@
+require("base")
+require("keymaps")
+require("appearance")
+require("plugins")
+require("lsp")

@@ -1,2 +1,3 @@
 #Dependence
-1.```ttf-font-awesome```
+1. ```ttf-font-awesome```
+2. ```Fira Code```

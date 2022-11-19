@@ -33,7 +33,7 @@ import os
 
 Instantaneous_Power = int(os.popen("sudo tlp-stat -b | tail -10 | head -n 1").read()[-13:-6])
 Energy_Now = int(os.popen("sudo tlp-stat -b | tail -11 | head -n 1").read()[-13:-6])
-print('Power {:.2f} W | Battery {:.2f} Wh'.format(Instantaneous_Power/1000,Energy_Now/1000))
+print('Power {:.2f} W | {:.2f} Wh'.format(Instantaneous_Power/1000,Energy_Now/1000))
 
 
 

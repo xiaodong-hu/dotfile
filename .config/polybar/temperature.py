@@ -17,4 +17,4 @@ core_num = 4
 for i in range(4):
 	temp.append(int(temperature[i][16:18]))
 
-print('Core Average {:.2f}°C'.format(sum(temp)/core_num))
+print('{:.2f}°C'.format(sum(temp)/core_num))

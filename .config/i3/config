@@ -1,3 +1,11 @@
+# i3wm configuration file
+
+# set $mod
+set $mod Mod1
+# Mod4 is win, Mod1 is Alt
+
+
+
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -5,23 +13,22 @@ set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 
-# set $mod
-set $mod Mod1
-# Mod4 is win, Mod1 is Alt
-
-
 exec_always --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --above eDP1
+
+
+# make the new window with no boundary, IMPORTANT to beautify
+new_window none
 
 
 # start a terminal
 bindsym $mod+Return exec termite
-new_window none # make the new window with no pixels, IMPORTANT to beautify
+
 
 # close the focusing window
 bindsym mod1+F4 kill
 
 # font set 
-font pango:Cantarell 11
+# font pango: "Fira Code,Fira Code Retina:style=Retina,Regular:size=16"
 
 floating_modifier $mod
 
@@ -38,10 +45,10 @@ bindsym --release $mod+Print exec --no-startup-id scrot -q 100 /home/hxd/Picture
 
 
 # change focus window (like vim)
-# bindsym $mod+h focus left
-# bindsym $mod+j focus down
-# bindsym $mod+k focus up
-# bindsym $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -62,10 +69,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym Mod4+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym Mod4+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -130,50 +137,51 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 
 #==============开机自启================
-# 启动fcitx
+# fcitx
 exec --no-startup-id fcitx
 
-## 壁纸(须先安装feh) 
+# set wallpaper (with feh)
 exec --no-startup-id feh --bg-fill /home/hxd/Pictures/"Anime Wallpaper"/"Mai Sakurajima.png"
-## 10分钟自动熄屏
-exec --no-startup-id xset dpms 600 900
+# never screenoff
+exec --no-startup-id xset s off
+exec --no-startup-id xset dpm force on
 
-# 终端透明（compton 似有 bug，功耗大）
-# exec --no-startup-id compton &
-exec --no-startup-id xcompmgr -c -f -n
+# see xcompmgr -h for all parameters
+# -c: excecute, -n: normal compositing with transparancy support, -f: fade window in/out when opening/closing
+exec --no-startup-id xcompmgr -c -n
 
-# 角标NetworkManager
+# NetworkManager
 exec_always --no-startup-id nm-applet &
 
-# xfce4 电池管理
-exec_always --no-startup-id xfce4-power-manager
+# xfce4 power manager
+# exec_always --no-startup-id xfce4-power-manager
 
-# blueman 蓝牙管理
-exec_always --no-startup-id blueman-applet
+# blueman
+# exec_always --no-startup-id blueman-applet
 
 # Onboard
 # exec --no-startup-id onboard &
 
 
-# Dropobox
+# Dropobox service
 exec --no-startup-id dropbox &
 
-exec --no-startup-id termite
+# exec --no-startup-id termite
 
 
-exec --no-startup-id Thunar
-assign [class="Thunar"] 4
+# exec --no-startup-id dolphin
+assign [class="dolphin"] 4
 
-assign [class="sublime_text"] 1
+assign [class="code-oss"] 1
 
-# assign [class="Vivaldi-stable"] $ws3
-assign [class="google-chrome"] 3
+# for browser
+assign [class="firefox"] 3
 
-assign [class="Forxit Reader"] 2
+# for pdf viewer
+assign [class="zathura"] 2
 assign [class="Evince"] 2
-# exec --no-startup-id evince
 
-assign [class="Sabaki"] 10
+# assign [class="Sabaki"] 10
 # exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
 
 assign [class="VirtualBox"] 9
@@ -214,10 +222,10 @@ mode "resize" {
         bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize grow width 5 px or 5 ppt
-        bindsym Down resize shrink height 5 px or 5 ppt
-        bindsym Up resize grow height 5 px or 5 ppt
-        bindsym Right resize shrink width 5 px or 5 ppt
+        # bindsym Left resize grow width 5 px or 5 ppt
+        # bindsym Down resize shrink height 5 px or 5 ppt
+        # bindsym Up resize grow height 5 px or 5 ppt
+        # bindsym Right resize shrink width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -229,12 +237,12 @@ bindsym $mod+r mode "resize"
 
 
 # Pixel boder is necessary to show the focused window (配合下面的client.focused 的 background and indicator)
-for_window [tiling] border pixel 2
+# for_window [tiling] border pixel 2
 
 # Window Colors
 # client				border				background				text					indicator
-client.focused			#00BFFF		       	#00BFFF     			$text-color				#00BFFF
-# #00BFFF is the color `DeepSkyBlue`
+client.focused			#439ee2		       	#439ee2     			$text-color				#439ee2
+# #439ee2 is the color `DeepSkyBlue`
 client.unfocused		$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
 client.focused_inactive	$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
 client.urgent			$urgent-bg-color	$urgent-bg-color		$text-color				#00ff00
@@ -260,12 +268,12 @@ mode "$mode_system" {
 focus_follows_mouse no
 
 #===============窗口间距===============
-gaps inner 20
-gaps top 35
-gaps bottom 35
+gaps inner 8
+gaps top 38
+gaps bottom 38
 
 # border & title.. Must be set to border pixel for gaps to work
-for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>"
+for_window [class="^.*"] border pixel 4, title_format "<b> %class >> %title </b>"
 
 #配合 polybar 的 override direct 容许的 offset
 #smart_gaps on #must be disabled, otherwise will counteract with the offset of polybar
@@ -277,10 +285,10 @@ for_window [class="^.*"] border pixel 2, title_format "<b> %class >> %title </b>
 #===============音量调节===============
 # Use amixer to control sounds
 # require alsa-utils package
-
-bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+# amixer
+bindsym $mod+F3 exec amixer set Master 5%+
+bindsym $mod+F2 exec amixer set Master 5%-
+bindsym $mod+F1 exec amixer set Master toggle
 
 
 #===============手动壁纸切换============

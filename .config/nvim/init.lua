@@ -1,5 +1,5 @@
 require("base")
-require("keymaps")
+require("keybindings")
 require("appearance")
 require("plugins")
 

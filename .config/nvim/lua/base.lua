@@ -23,3 +23,7 @@ vim.opt.autoread = true
 vim.bo.autoread = true
 
 vim.wo.signcolumn = "no"
+
+-- save with automatic formatting with lsp
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+

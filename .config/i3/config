@@ -1,7 +1,7 @@
 # i3wm configuration file
 
 # set $mod
-set $mod Mod1
+set $mod Mod4
 # Mod4 is win, Mod1 is Alt
 
 
@@ -20,12 +20,12 @@ exec_always --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --ab
 new_window none
 
 
-# start a terminal
-bindsym $mod+Return exec termite
+# start a terminal: we choose alacritty as the default one (ther fastest written in rust)
+bindsym $mod+Return exec alacritty
 
 
 # close the focusing window
-bindsym mod1+F4 kill
+bindsym Mod1+F4 kill
 
 # font set 
 # font pango: "Fira Code,Fira Code Retina:style=Retina,Regular:size=16"
@@ -51,10 +51,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -63,24 +63,24 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym Mod4+h split h
+bindsym $mod+Right split h
 
 # split in vertical orientation
-bindsym Mod4+v split v
+bindsym $mod+Down split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -89,27 +89,14 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
 
 #=============== Workspaces ===============
-# Set workspace names
-# 这一部分由 Polybar 的 i3module 实现
-# 以便 i3-msg 的工作区切换与移动
-# set $1 "  Code  "
-# set $2 "  PDF  "
-# set $3 "  Firefox  "
-# set $4 "  File  "
-# set $7 "  Music  "
-# set $6 "  Movie  "
-# set $5 "  Mathematica  "
-# set $8 "  Chat  |  |  "
-# set $9 "  Virtualbox  |  "
-# set $10 "  Sabaki  "
-
-# Switch to workspace (can be larger than 10)
+# Walk around workspaces
+# this part is realized with Polybar i3module (the name of the workspace in i3 must match with the settings in polybar config.ini)
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -146,9 +133,11 @@ exec --no-startup-id feh --bg-fill /home/hxd/Pictures/"Anime Wallpaper"/"Mai Sak
 exec --no-startup-id xset s off
 exec --no-startup-id xset dpm force on
 
-# see xcompmgr -h for all parameters
-# -c: excecute, -n: normal compositing with transparancy support, -f: fade window in/out when opening/closing
-exec --no-startup-id xcompmgr -c -n
+# both xcompmgr and compton have BUG in showing electron-basid apps
+exec_always --no-startup-id picom --config ~/.config/i3/picom.config &
+# specify the `wm_class` for ALL window contains `nvim` within the alacritty
+# exec_always --no-startup-id xdotool search --name "nvim" set_window --class "nvim, Alacritty"
+
 
 # NetworkManager
 exec_always --no-startup-id nm-applet &
@@ -157,7 +146,7 @@ exec_always --no-startup-id nm-applet &
 # exec_always --no-startup-id xfce4-power-manager
 
 # blueman
-# exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id blueman-applet
 
 # Onboard
 # exec --no-startup-id onboard &
@@ -169,8 +158,10 @@ exec --no-startup-id dropbox &
 # exec --no-startup-id termite
 
 
-# exec --no-startup-id dolphin
-assign [class="dolphin"] 4
+# start two thunar by default
+exec --no-startup-id thunar &
+exec --no-startup-id thunar &
+assign [class="Thunar"] 4
 
 assign [class="code-oss"] 1
 
@@ -178,7 +169,7 @@ assign [class="code-oss"] 1
 assign [class="firefox"] 3
 
 # for pdf viewer
-assign [class="zathura"] 2
+assign [class="Zathura"] 2
 assign [class="Evince"] 2
 
 # assign [class="Sabaki"] 10
@@ -187,8 +178,6 @@ assign [class="Evince"] 2
 assign [class="VirtualBox"] 9
 # for_window [class="VirtualBox Machine"] floating enable
 
-
-assign [class="electronic-wechat"] 8
 
 
 
@@ -290,6 +279,9 @@ bindsym $mod+F3 exec amixer set Master 5%+
 bindsym $mod+F2 exec amixer set Master 5%-
 bindsym $mod+F1 exec amixer set Master toggle
 
+#===============brightness==============
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 #===============手动壁纸切换============
 #bindsym Mod4+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/1.jpg

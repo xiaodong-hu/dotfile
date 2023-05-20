@@ -7,7 +7,7 @@ vim.opt.fileencoding = 'utf-8'
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
--- use relative line number, example usage `10j`
+-- use relative line number, example usage `5j`
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -21,14 +21,17 @@ vim.opt.smartcase = true
 
 -- allow mouse use
 vim.opt.mouse = "a"
+
+-- copy and paste with system clipboard
 vim.opt.clipboard:append ("unnamedplus")
+vim.api.nvim_set_option("clipboard","unnamed")
 
 -- about tab
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4 -- tab size
 vim.opt.shiftround = true
-vim.opt.expandtab = false -- DO NOT convert tab to spaces
+vim.opt.expandtab = true -- force convert tab to spaces (so that every time escape the first work for the head of line we won't get back)
 
 
 -- new line indent

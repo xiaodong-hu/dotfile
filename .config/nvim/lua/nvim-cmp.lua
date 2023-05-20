@@ -9,6 +9,7 @@ local feedkey = function(key, mode)
 end
 
 
+
 local lspkind = require('lspkind')
 local cmp = require'cmp'
 
@@ -30,47 +31,55 @@ cmp.setup {
   }),
 
   -- hotkey, set in `keymaps.lua`
- -- mapping = cmp.mapping.preset.insert({
- --   -- ['<C-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }), -- show completion
- --   -- ['<C-,>'] = cmp.mapping({
- --   --   i = cmp.mapping.abort(),
- --   --   c = cmp.mapping.close(),
- --   -- }), -- cancel completion
- --   ['<C-k>'] = cmp.mapping.select_prev_item(), -- next completion
- --   ['<C-j>'] = cmp.mapping.select_next_item(), -- previous completion
- --   ['<CR>'] = cmp.mapping.confirm({ select = true }), -- accept currently selected item
- -- }),
-
   mapping = {
-	-- ['<leader-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-	-- ['<leader-,>'] = cmp.mapping.abort(),
-	-- ['<C-k>'] = cmp.mapping.select_prev_item(),
-	-- ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-Tab>'] = cmp.mapping(
+	function(rise_completion)
+		if cmp.visible() then
+			-- cmp.mapping.abort()
+			-- cmp.mapping.close()
+		elseif has_words_before() then
+			cmp.complete()
+		elseif vim.fn["vsnip#available"](1) == 1 then
+			feedkey("<Plug>(vsnip-expand-or-jump)", "")
+		else
+			rise_completion() -- recursive invokation!
+		end
+	end, { 'i', 'c' }), -- show completion
 
-	-- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-	-- ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-k>'] = cmp.mapping.select_prev_item(), -- next completion
+    ['<C-j>'] = cmp.mapping.select_next_item(), -- previous completion
+    ['<CR>'] = cmp.mapping.confirm({ select = false}), -- accept currently selected item
+},
 
-    ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
-      end
-    end, { "i", "s" }),
-  },
+--  mapping = {
+--	-- ['<leader-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+--	-- ['<leader-,>'] = cmp.mapping.abort(),
+--	-- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+--	-- ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+--	['<C-k>'] = cmp.mapping.select_prev_item(),
+--	['<C-j>'] = cmp.mapping.select_next_item(),
+--
+--    ['<C-CR>'] = cmp.mapping.confirm({ select = true}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+--    ["<C-Tab>"] = cmp.mapping(function(fallback)
+--      if cmp.visible() then
+--        cmp.select_next_item()
+--      elseif vim.fn["vsnip#available"](1) == 1 then
+--        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+--      elseif has_words_before() then
+--        cmp.complete()
+--      else
+--        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+--      end
+--    end, { "i", "s" }),
+--
+--    ["<S-Tab>"] = cmp.mapping(function()
+--      if cmp.visible() then
+--        cmp.select_prev_item()
+--      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+--        feedkey("<Plug>(vsnip-jump-prev)", "")
+--      end
+--    end, { "i", "s" }),
+--  },
 
   -- show hint kinds with `lspkind-nvim`
   formatting = {

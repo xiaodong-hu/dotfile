@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["nabla.nvim"] = {
+    loaded = true,
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nabla.nvim",
+    url = "https://github.com/jbyuki/nabla.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -119,15 +124,20 @@ _G.packer_plugins = {
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["space-vim-dark"] = {
+  ["space-nvim"] = {
     loaded = true,
-    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/space-vim-dark",
-    url = "https://github.com/liuchengxu/space-vim-dark"
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/space-nvim",
+    url = "https://github.com/Th3Whit3Wolf/space-nvim"
   },
   ["vim-vsnip"] = {
     loaded = true,

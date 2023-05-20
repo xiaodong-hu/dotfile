@@ -2,11 +2,22 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
+  --
   use 'wbthomason/packer.nvim'
-  use 'liuchengxu/space-vim-dark'
+  use 'Th3Whit3Wolf/space-nvim'
   use 'neovim/nvim-lspconfig'
   use 'JuliaEditorSupport/julia-vim'
-  use 'lervag/vimtex'
+  -- Vim Tex
+  use { 'lervag/vimtex',
+    vim.cmd([[
+      let g:vimtex_view_method = 'skim'
+      let g:vimtex_view_automatic = 0
+      let g:vimtex_compiler_latexmk = {'continuous': 0}
+      let g:vimtex_quickfix_open_on_warning = 0
+      set conceallevel=1
+      let g:tex_conceal='abdmg'
+            ]])
+   }
   
   -- nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp' -- { name = nvim_lsp }

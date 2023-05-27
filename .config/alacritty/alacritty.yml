@@ -49,20 +49,20 @@ colors:
 font:
   # see from `fc-list | grep Fira`
   normal:
-    family: "Fira Code"
-    style: Retina
+    family: Fira Code
+    style: Medium
   bold:
-    family: "Fira Code"
+    family: Fira Code
     style: Bold
   italic:
-    family: "Fira Code"
-    style: Light
+    family: Fira Code
+    style: Italic
   bold_italic:
-    family: "Fira Code"
-    style: Medium
+    family: Fira Code
+    style: Retina Italic
 
   # 字大小
-  size: 8 
+  size: 9 
 
   offset:
     x: 0

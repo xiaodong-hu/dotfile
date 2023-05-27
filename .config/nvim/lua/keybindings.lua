@@ -1,20 +1,20 @@
 vim.g.mapleader = " " -- Spacebar to initialize the key mappings
 local keymap = vim.keymap -- local variable
 
-
-
 ---------------------------------------------------------------------------------------------
 ---------------------------------- Vim Cursor/Page Movement ---------------------------------
 ---------------------------------------------------------------------------------------------
 -- Ctrl-y Moves screen up one line
 -- Ctrl-e Moves screen down one line
+--
 -- Ctrl-u Moves cursor & screen up ½ page
 -- Ctrl-d Moves cursor & screen down ½ page
+--
 -- Ctrl-b Moves screen up one page, cursor to last line
 -- Ctrl-f Moves screen down one page, cursor to first line
 
 ---------------------------------------------------------------------------------------------
------------------------------------- Basic Edition Setting ----------------------------------
+-------------------------------------- Basic Edit Setting -----------------------------------
 ---------------------------------------------------------------------------------------------
 -- diable arrow keys in ALL Modes
 keymap.set({"n","v","i"}, "<Up>", "<Nop>")
@@ -23,27 +23,24 @@ keymap.set({"n","v","i"}, "<Left>", "<Nop>")
 keymap.set({"n","v","i"}, "<Right>", "<Nop>")
 
 
-keymap.set("n", "<C-]>", "<S-v>>") -- tab forward a line
-keymap.set("n", "<C-[>", "<S-v><") -- tab backward a line
+keymap.set({"n","i"}, "<C-]>", "<S-v>>") -- tab forward a line (like vscode)
+keymap.set({"n","i"}, "<C-[>", "<S-v><") -- tab backward a line (like vscode)
 
 keymap.set("n", "<C-a>", "gg<S-v>G") -- select all
 
--- word walk in BOTH normal and insert mode
+-- word walk in n,v,i-mode mode
 keymap.set("i", "<C-h>", "<ESC>bi") -- move by left word
-keymap.set("n", "<C-h>", "b")
+keymap.set({"n","v"}, "<C-h>", "b")
 keymap.set("i", "<C-l>", "<ESC>ea") -- move by right word
-keymap.set("n", "<C-l>", "e")
-
-
+keymap.set({"n","v"}, "<C-l>", "e")
 
 
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------- tab splitting block --------------------------------------
 ---------------------------------------------------------------------------------------------
-keymap.set("n", "<S-t>", ":tabnew<CR>:terminal<CR>i", {silent = true}) -- create a new buffer and enter to the terminal mode
+keymap.set("n", "<S-t>", ":tabnew<CR>:terminal<CR>i", {silent = true}) -- create a new buffer and enter to the terminal mode. This also serve as  `:tabnew<CR>`
 keymap.set("t", "<S-w>", "<C-\\><C-n>", {noremap = true}) -- exit the terminal mode
-keymap.set("n", "<S-n>", ":tabnew<CR>") -- open a new tab
 keymap.set("n", "<S-q>", ":tabclose<CR>") -- close a new tab (<C-W> will affect walk among windows...)
 
 keymap.set("n", "<S-l>", ":tabnext<CR>") -- move to next tab

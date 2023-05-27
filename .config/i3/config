@@ -1,54 +1,58 @@
-# i3wm configuration file
-
-# set $mod
+# i3 config file (v4)
 set $mod Mod4
-# Mod4 is win, Mod1 is Alt
+
+font pango: "Fira Code:style=Medium:size=12"
+
+# set colors here
+set $bg-color			#2f343f
+set $inactive-bg-color		#2f343f
+set $text-color			#f3f4f5
+set $inactive-text-color	#676E7D
+set $urgent-bg-color		#E53935
+
+# Pixel boder is necessary to show the focused window (配合下面的client.focused 的 background and indicator)
+for_window [tiling] border pixel 4
+for_window [floating] border pixel 4
+
+# Window Colors
+# client				border				background				text					indicator
+client.focused			#ffa631             #ffa631      			$text-color				#ffa631
+# #ffa631 为「杏黄」, see https://coolfishstudio.github.io/cfs-color/
+client.unfocused		$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
+client.focused_inactive	$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
+client.urgent			$urgent-bg-color	$urgent-bg-color		$text-color				#00ff00
+# #00ff00 is red
 
 
 
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+# remove the borders for each window
+# new_window pixel 0
 
+#######################################
+########### shortkey Setup ############
+#######################################
+# kill focused window
+bindsym $mod+F4 kill
+bindsym $mod+q kill
 
-exec_always --no-startup-id xrandr --output eDP1 --auto --output DP1 --auto --above eDP1
-
-
-# make the new window with no boundary, IMPORTANT to beautify
-new_window none
-
-
-# start a terminal: we choose alacritty as the default one (ther fastest written in rust)
+# start a terminal
 bindsym $mod+Return exec alacritty
 
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show drun 
 
-# close the focusing window
-bindsym Mod1+F4 kill
-
-# font set 
-# font pango: "Fira Code,Fira Code Retina:style=Retina,Regular:size=16"
-
+# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run
-
-# use rofi as launcher rather tha dmenu
-bindsym $mod+d exec rofi -show run 
-# to select the official themes of rofi, type 'theme' in rofi
-
-
-# Screenshot by Screenshot
-bindsym --release $mod+Print exec --no-startup-id scrot -q 100 /home/hxd/Pictures/Screenshots/"Screenshot from %Y-%m-%d %H-%M-%S".png
-
-
-# change focus window (like vim)
+# change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+
+# do not allow focus follow with mouse
+focus_follows_mouse no
+
 
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Left focus left
@@ -63,234 +67,191 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Let move left
 # bindsym $mod+Shift+Down move down
 # bindsym $mod+Shift+Up move up
 # bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+Right split h
-
-# split in vertical orientation
-bindsym $mod+Down split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
-# bindsym $mod+w layout tabbed
-# bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+# set $mode_splitting Splitting Style
+# bindsym $mod+s mode "$mode_splitting"
+# mode "$mode_splitting" {
+# 	# horizontal splitting
+# 	bindsym h split h mode "default"
+# 	# vertical splitting
+# 	bindsym v split v mode "default"
+# 
+# 	# back to normal mode
+# 	# bindsym $mod+s mode "default"
+# 	bindsym Escape mode "default"
+# }
+# # split in horizontal orientation
+# bindsym $mod+s+h split h
+# 
+# # split in vertical orientation
+# bindsym $mod+s+v split v
+
+# define a splitting mode like above is standard but tedious, here we simply define the plain key bindings 
+# split in horizontal orientation ("s" short for (default) horizontal splitting)
+bindsym $mod+s split h
+# split in vertical orientation
+bindsym $mod+v split v
+
+
+# floating mode
 bindsym $mod+Shift+space floating toggle
+# we only cycle between default split mode and the tabbed mode (good when multiple windows are openned)
+bindsym $mod+t layout toggle tabbed split
 
-# change focus between tiling / floating windows
+# change focus between the group of tilting/tabbed windows and floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-# bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-#=============== Workspaces ===============
-# Walk around workspaces
-# this part is realized with Polybar i3module (the name of the workspace in i3 must match with the settings in polybar config.ini)
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
 
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
-
-
-#==============开机自启================
-# fcitx
-exec --no-startup-id fcitx
-
-# set wallpaper (with feh)
-exec --no-startup-id feh --bg-fill /home/hxd/Pictures/"Anime Wallpaper"/"Mai Sakurajima.png"
-# never screenoff
-exec --no-startup-id xset s off
-exec --no-startup-id xset dpm force on
-
-# both xcompmgr and compton have BUG in showing electron-basid apps
-exec_always --no-startup-id picom --config ~/.config/i3/picom.config &
-# specify the `wm_class` for ALL window contains `nvim` within the alacritty
-# exec_always --no-startup-id xdotool search --name "nvim" set_window --class "nvim, Alacritty"
-
-
-# NetworkManager
-exec_always --no-startup-id nm-applet &
-
-# xfce4 power manager
-# exec_always --no-startup-id xfce4-power-manager
-
-# blueman
-exec_always --no-startup-id blueman-applet
-
-# Onboard
-# exec --no-startup-id onboard &
-
-
-# Dropobox service
-exec --no-startup-id dropbox &
-
-# exec --no-startup-id termite
-
-
-# start two thunar by default
-exec --no-startup-id thunar &
-exec --no-startup-id thunar &
-assign [class="Thunar"] 4
-
-assign [class="code-oss"] 1
-
-# for browser
-assign [class="firefox"] 3
-
-# for pdf viewer
-assign [class="Zathura"] 2
-assign [class="Evince"] 2
-
-# assign [class="Sabaki"] 10
-# exec --no-startup-id /home/hxd/Downloads/sabaki-v0.31.4-linux-x64.AppImage
-
-assign [class="VirtualBox"] 9
-# for_window [class="VirtualBox Machine"] floating enable
-
-
-
-
-
-
-# start polybar
-exec_always --no-startup-id bash $HOME/.config/polybar/launch.sh
-
-
-
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -db 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)i
-# 先定义 mode 如下
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
-
-        # same bindings, but for the arrow keys
-        # bindsym Left resize grow width 5 px or 5 ppt
-        # bindsym Down resize shrink height 5 px or 5 ppt
-        # bindsym Up resize grow height 5 px or 5 ppt
-        # bindsym Right resize shrink width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-# 绑定 resize mode 的热键
-bindsym $mod+r mode "resize"
-
-
-
-# Pixel boder is necessary to show the focused window (配合下面的client.focused 的 background and indicator)
-# for_window [tiling] border pixel 2
-
-# Window Colors
-# client				border				background				text					indicator
-client.focused			#439ee2		       	#439ee2     			$text-color				#439ee2
-# #439ee2 is the color `DeepSkyBlue`
-client.unfocused		$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
-client.focused_inactive	$bg-color			$inactive-bg-color		$inactive-text-color	$bg-color
-client.urgent			$urgent-bg-color	$urgent-bg-color		$text-color				#00ff00
-# #00ff00 is red
-
-#===============状态栏===============
-# replaced by polybar
-
-
-
-#===============系统命令===============
-set $mode_system  Lock(L) | Log Out(O) | Power Off(P) | Restart(R) | Exit(Esc)
-bindsym $mod+shift+q mode "$mode_system"
-mode "$mode_system" {
-	bindsym l exec i3lock -i /home/hxd/Pictures/arch-image.png
-	bindsym o exec i3-msg exit
-    bindsym p exec systemctl poweroff
-    bindsym r exec systemctl reboot
-    bindsym Escape mode "default"
-}
-
-#===============鼠标聚焦===============
-focus_follows_mouse no
-
-#===============窗口间距===============
+# windows gaps (i3-gaps)
 gaps inner 8
 gaps top 38
 gaps bottom 38
 
-# border & title.. Must be set to border pixel for gaps to work
-for_window [class="^.*"] border pixel 4, title_format "<b> %class >> %title </b>"
-
-#配合 polybar 的 override direct 容许的 offset
-#smart_gaps on #must be disabled, otherwise will counteract with the offset of polybar
-
-#===============锁屏快捷键=============
-# bindsym $mod+shift+l exec i3lock -i /home/hxd/Pictures/arch-image.png
 
 
-#===============音量调节===============
-# Use amixer to control sounds
-# require alsa-utils package
-# amixer
-bindsym $mod+F3 exec amixer set Master 5%+
-bindsym $mod+F2 exec amixer set Master 5%-
-bindsym $mod+F1 exec amixer set Master toggle
 
-#===============brightness==============
+# Define tags for default workspaces for which we configure key bindings later on. The workspace names will be governed by polybar
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Rules for reassign window/application to workspaces
+# see `xprop`
+bindsym $mod+g exec alacritty --title=ranger -e ranger 
+assign [class="Alacritty" title="ranger"] 4
+
+assign [class="code-oss"] 1
+
+assign [class="firefox"] 3
+assign [class="Evince"] 2
+
+assign [class="VirtualBox"] 9
+assign [class="Sabaki"] 10
+
+
+
+
+
+
+# Resizing the tilting windows
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym l resize shrink width 1 px or 1 ppt
+        bindsym j resize grow height 1 px or 1 ppt
+        bindsym k resize shrink height 1 px or 1 ppt
+bindsym h resize grow width 1 px or 1 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+### i3-wm systematic commands
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+# systematic options
+set $mode_system Lock(L) | Log Out(O) | Restart(R) | Poweroff(P) | Exit(Esc)
+bindsym $mod+Shift+q mode "$mode_system"
+mode "$mode_system" {
+	# options for sysematical operations
+	bindsym l exec i3lock -i /home/hxd/Pictures/wallpapers/arch-image.png
+	bindsym o exec i3-msg exit
+	bindsym r exec systemctl reboot
+    bindsym p exec systemctl poweroff
+
+	# back to normal mode
+	bindsym Escape mode "default"
+}
+
+
+
+# adjust volume with alsa-utils and pulseaudio
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+bindsym XF86AudioMute  exec amixer sset Master toggle
+# see `pactl list sources` for the Source Number for mute
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 0 toggle
+
+# brightness with brightnessctl
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-#===============手动壁纸切换============
-#bindsym Mod4+1 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/1.jpg
-#bindsym Mod4+2 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/2.jpg
-#bindsym Mod4+3 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/3.jpg
-#bindsym Mod4+4 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/4.png
-#bindsym Mod4+5 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/5.png
-#bindsym Mod4+6 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/6.png
-#bindsym Mod4+7 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/7.jpg
-#bindsym Mod4+8 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/8.png
-#bindsym Mod4+9 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/9.jpg
-#bindsym Mod4+0 exec feh --bg-fill /home/hxd/Pictures/Random\ Desktop/10.jpg
+# screenshot with flameshot
+bindsym $mod+Print exec flameshot gui
+
+
+
+#######################################
+########### AutoRun Command ###########
+#######################################
+
+#fcitx5
+exec --no-startup-id fcitx5
+# onboard for touch screen
+exec --no-startup-id onboard
+
+# set wallpaper (feh)
+exec_always --no-startup-id feh --bg-fill "/home/hxd/Pictures/wallpapers/Mai Sakurajima.png"
+
+# never screenoff
+exec --no-startup-id xset s off
+exec --no-startup-id xset dpm force on
+
+# transparancy
+exec_always --no-startup-id picom --config ~/.config/i3/picom.config &
+
+# Network Manager applet
+exec --no-startup-id nm-applet
+# Bluetooth applet
+exec --no-startup-id blueman-applet
+
+exec --no-startup-id alacritty
+# exec --no-startup-id alacritty --title=ranger -e ranger 
+
+# polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh 

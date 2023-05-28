@@ -48,7 +48,7 @@ cmp.setup {
         		rise_completion() -- recursive call
         	end
         end,
-        { 'i', 'c', 'n', 'v' }
+        { 'i' }
     ),
 
     ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}), -- pick next completion (in both insert and command mode)

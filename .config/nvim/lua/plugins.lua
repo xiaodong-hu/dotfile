@@ -4,9 +4,8 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   --
   use 'wbthomason/packer.nvim'
-  use 'Th3Whit3Wolf/space-nvim'     -- color theme
+  use 'liuchengxu/space-vim-theme'       -- color theme
   use 'neovim/nvim-lspconfig'
-  -- use 'JuliaEditorSupport/julia-vim'
 
   --
   -- Section for vimtex
@@ -20,10 +19,10 @@ return require('packer').startup(function(use)
       let g:vimtex_view_automatic = 0
       let g:vimtex_compiler_latexmk = {'continuous': 0}
       let g:vimtex_quickfix_open_on_warning = 0
-      set conceallevel=1
+      set conceallevel=2
       let g:tex_conceal='abdmg'
-      ]])
-   }
+    ]])
+  }
 
   --
   -- Section for nvim-cmp (only `nvim-cmp` is the core)
@@ -38,4 +37,13 @@ return require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'
   -- lspkind (show icon kinds base on internal lsp)
   use 'onsails/lspkind-nvim'
+
+
+  --
+  -- treesitter
+  --
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate'
+  }
 end)

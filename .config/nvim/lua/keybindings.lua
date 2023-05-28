@@ -16,6 +16,7 @@ local keymap = vim.keymap -- local variable
 ---------------------------------------------------------------------------------------------
 -------------------------------------- Basic Edit Setting -----------------------------------
 ---------------------------------------------------------------------------------------------
+keymap.set({"n","v","i"}, "<ESC>", "<ESC>")
 -- diable arrow keys in ALL Modes
 keymap.set({"n","v","i"}, "<Up>", "<Nop>")
 keymap.set({"n","v","i"}, "<Down>", "<Nop>")
@@ -64,10 +65,10 @@ keymap.set("n", "<leader>vv", "<C-w>v<C-w>w", {silent = true}) -- split window v
 keymap.set("n", "<leader>ss", "<C-w>s<C-w>w", {silent = true}) -- split window horizontally
 
 -- walk around
--- keymap.set("n", "<leader>h", "<C-w>h")
--- keymap.set("n", "<leader>l", "<C-w>l")
--- keymap.set("n", "<leader>j", "<C-w>j")
--- keymap.set("n", "<leader>k", "<C-w>k")
+keymap.set("n", "<leader>h", "<C-w>h")
+keymap.set("n", "<leader>l", "<C-w>l")
+keymap.set("n", "<leader>j", "<C-w>j")
+keymap.set("n", "<leader>k", "<C-w>k")
 
 
 -- resize windwos
@@ -84,4 +85,5 @@ keymap.set("n", "<leader>--", "<C-w>-<C-w>-<C-w>-<C-w>-<C-w>-")
 -- keymap.set("t", "<leader>t", "<C-\\><C-n>|:buffers<CR>:buffer 1<CR>") -- move to tab 4
 -- 
 -- keymap.set("n", "<leader>b", ":buffers<CR>:buffer term<CR>") -- move to tab 4
+
 

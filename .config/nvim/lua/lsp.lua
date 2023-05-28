@@ -1,4 +1,3 @@
-
 ---------------------------------------------------------- 
 --------------------- language servers -------------------
 ---------------------------------------------------------- 
@@ -48,10 +47,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = ev.buf }
     
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    -- the keymap for <C-j> and <C-k> is set in the sense that help massage is list above (short) or below (long) for choosing tokens. Twice input of j or k will go into the hover window
-    vim.keymap.set('n', '<C-j>', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    -- the keymap for <C-j> and <C-k> is set in the sense that help massage is list above (short) or below (long) for choosing tokens. Twice input of j or k will go into the hover window
+    vim.keymap.set('n', '<leader>j', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts) -- lsp-based formatting
 
     -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)

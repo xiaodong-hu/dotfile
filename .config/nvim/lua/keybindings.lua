@@ -16,7 +16,8 @@ local keymap = vim.keymap -- local variable
 ---------------------------------------------------------------------------------------------
 -------------------------------------- Basic Edit Setting -----------------------------------
 ---------------------------------------------------------------------------------------------
-keymap.set({"n","v","i"}, "<ESC>", "<ESC>")
+keymap.set({"n","v","i"}, "<ESC>", "<ESC>") -- something is conflicting with <ESC> here... so I have to map it for use...
+
 -- diable arrow keys in ALL Modes
 keymap.set({"n","v","i"}, "<Up>", "<Nop>")
 keymap.set({"n","v","i"}, "<Down>", "<Nop>")
@@ -24,12 +25,11 @@ keymap.set({"n","v","i"}, "<Left>", "<Nop>")
 keymap.set({"n","v","i"}, "<Right>", "<Nop>")
 
 
-keymap.set({"n","i"}, "<C-]>", "<S-v>>") -- tab forward a line (like vscode)
-keymap.set({"n","i"}, "<C-[>", "<S-v><") -- tab backward a line (like vscode)
-
+keymap.set({"n","i"}, "<C-]>", "<S-v>>") -- tab forward the entire line (like vscode)
+keymap.set({"n","i"}, "<C-[>", "<S-v><") -- tab backward the entire line (like vscode)
 keymap.set("n", "<C-a>", "gg<S-v>G") -- select all
 
--- word walk in n,v,i-mode mode
+-- word walk in n,v,i-mode mode like vscode
 keymap.set("i", "<C-h>", "<ESC>bi") -- move by left word
 keymap.set({"n","v"}, "<C-h>", "b")
 keymap.set("i", "<C-l>", "<ESC>ea") -- move by right word

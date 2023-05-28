@@ -18,8 +18,8 @@ vim.opt.cursorline = true       -- hightlight current line
 vim.opt.linebreak = true        -- allow linebreak when warp a long line
 
 vim.opt.showmatch = true        -- show search match
-vim.opt.hlsearch = true         -- hightline search result
-vim.opt.incsearch = true        -- hightline increase search result
+vim.opt.hlsearch = false        -- hightline search result
+vim.opt.incsearch = true        -- search when typing
 
 -- search ignore cases unless capital letter is contained
 vim.opt.ignorecase = true

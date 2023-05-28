@@ -23,8 +23,9 @@ cmp.setup {
   },
   -- source of cmp
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' }, -- from lsp 
-    { name = 'vsnip' },	-- from vsnip
+    { name = 'nvim_lsp' }, 
+    { name = 'vsnip' },
+    { name = 'buffer' },
   },
   {
   	{ name = 'buffer' },
@@ -32,26 +33,29 @@ cmp.setup {
   }),
   -- hotkey, set in `keybindings.lua`
   mapping = {
-    ['<C-Tab>'] = 
-    cmp.mapping(cmp.mapping.complete(), { 'i', 'c', 'n', 'v' }),
-    -- cmp.mapping(
-	--   function(rise_completion)
-	--   	if cmp.visible() then
-	--   		cmp.mapping.abort()
-	--   		cmp.mapping.close()
-	--   	elseif has_words_before() then
-	--   		cmp.complete()
-	--   	elseif vim.fn["vsnip#available"](1) == 1 then
-	--   		feedkey("<Plug>(vsnip-expand-or-jump)", "")
-	--   	else
-	--   		rise_completion() -- recursive invokation!
-	--   	end
-	--   end, { 'i', 'c', 'n', 'v' }), -- show completion
+    -- here we use <Tab> to pop out the cmp-completion
+    ['<Tab>'] = cmp.mapping(
+        function(rise_completion)
+        	if cmp.visible() then
+                cmp.mapping.select_next_item()
+                -- modified from the vnisp keymap settings: https://github.com/hrsh7th/vim-vsnip
+                if vim.fn['vsnip#available'](1) then
+                    feedkey('<Plug>(vsnip-expand-or-jump)', '<Tab>') -- for consistency, we also use <Tab> to jump among placeholders within snippets for vsnip
+                end
+        	elseif has_words_before() then
+        		cmp.complete() -- pop out completion
+        	else
+        		rise_completion() -- recursive call
+        	end
+        end,
+        { 'i', 'c', 'n', 'v' }
+    ),
 
-    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}), -- next completion (in both insert and command mode)
-    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}), -- previous completion (in both insert and command mode)
-    ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}), -- accept currently selected item; if none is select, return nothing
+    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}), -- pick next completion (in both insert and command mode)
+    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}), -- pick prev completion (in both insert and command mode)
+    ['<CR>'] = cmp.mapping.confirm({select = false}), -- accept currently selected item; if none is select, return nothing
   },
+
   -- show hint kinds with `lspkind-nvim`
   formatting = {
     format = lspkind.cmp_format({

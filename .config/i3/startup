@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-killall polybar
-(sleep 1; sh ~/.config/polybar/launch.sh）&

@@ -12,7 +12,7 @@ case "$rotation" in
     # see xsetwacom list for connected devices
 	xsetwacom set 12 rotate cw
 	xsetwacom set 13 rotate cw
-	xsetwacom set 19 rotate cw
+	xsetwacom set 18 rotate cw
 	;;
 	right)
 	xrandr -o normal
@@ -20,6 +20,6 @@ case "$rotation" in
 
     xsetwacom set 12 rotate none 
 	xsetwacom set 13 rotate none 
-	xsetwacom set 19 rotate none 
+	xsetwacom set 18 rotate none 
 	;;
 esac

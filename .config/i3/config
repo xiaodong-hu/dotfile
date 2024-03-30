@@ -33,7 +33,6 @@ client.urgent			$urgent-bg-color	$urgent-bg-color		$text-color				#00ff00
 #######################################
 # kill focused window
 bindsym $mod+F4 kill
-bindsym $mod+q kill
 
 # start a terminal
 bindsym $mod+Return exec alacritty
@@ -235,12 +234,12 @@ exec --no-startup-id fcitx5
 # onboard for touch screen
 exec --no-startup-id onboard
 
-# set wallpaper (feh)
-exec_always --no-startup-id feh --bg-fill "/home/hxd/Pictures/wallpapers/Mai Sakurajima.png"
+# set wallpaper with feh (double call for multi-monitor)
+exec_always --no-startup-id feh --bg-fill "/home/hxd/Pictures/wallpapers/Mai Sakurajima.png" --bg-fill "/home/hxd/Pictures/wallpapers/Mai Sakurajima.png"
 
-# never screenoff
+# never screenoff and disable energy save mode Xorg
 exec --no-startup-id xset s off
-exec --no-startup-id xset dpm force on
+exec --no-startup-id xset -dpm
 
 # transparancy
 exec_always --no-startup-id picom --config ~/.config/i3/picom.config &
@@ -250,8 +249,12 @@ exec --no-startup-id nm-applet
 # Bluetooth applet
 exec --no-startup-id blueman-applet
 
+# Termial (alacritty)
 exec --no-startup-id alacritty
-# exec --no-startup-id alacritty --title=ranger -e ranger 
+
+# Dropbox
+exec_always --no-startup-id dropbox
 
 # polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh 
+

@@ -3,7 +3,8 @@
 ---------------------------------------------------------- 
 -- require'lspconfig'.julials.setup{}  -- lsp support for julialang (a little bit long time for startup)
 require('lspconfig').julials.setup{
-    -- autostart = false,   -- manually turn on lsp with :LspStart
+    autostart = false,   -- manually turn on lsp with :LspStart
+
     on_new_config = function(new_config, _)
         local julia = vim.fn.expand("~/.julia/environments/nvim-lspconfig/bin/julia") -- using the compiled sysimage for fast startup! (see makefile at ~/.julia/environments/nvim-lspconfig/)
         if require("lspconfig").util.path.is_file(julia) then

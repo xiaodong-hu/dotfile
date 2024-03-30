@@ -17,6 +17,18 @@ local keymap = vim.keymap -- local variable
 -------------------------------------- Basic Edit Setting -----------------------------------
 ---------------------------------------------------------------------------------------------
 keymap.set({"n","v","i"}, "<ESC>", "<ESC>") -- something is conflicting with <ESC> here... so I have to map it for use...
+-- keymap.set({"n","v"}, "p", '"0p') -- something is conflicting with <ESC> here... so I have to map it for use...
+
+
+keymap.set({"i"}, "<C-v>", "<ESC>lv") -- directly jump to view select mode in edit mode 
+
+keymap.set({"i"}, "<C-l>", "<ESC>ea") -- word walk like vscode
+keymap.set({"n"}, "<C-l>", "ve") -- directly jump to view select mode (word select like vscode)
+keymap.set({"v"}, "<C-l>", "e") -- directly jump to view select mode (word select like vscode)
+
+keymap.set({"i"}, "<C-h>", "<ESC>bi") -- word walk like vscode
+keymap.set({"n"}, "<C-h>", "vb") -- directly jump to view select (word select like vscode)
+keymap.set({"v"}, "<C-h>", "b") -- directly jump to view select (word select like vscode)
 
 -- diable arrow keys in ALL Modes
 keymap.set({"n","v","i"}, "<Up>", "<Nop>")
@@ -24,34 +36,49 @@ keymap.set({"n","v","i"}, "<Down>", "<Nop>")
 keymap.set({"n","v","i"}, "<Left>", "<Nop>")
 keymap.set({"n","v","i"}, "<Right>", "<Nop>")
 
+-- automatic brackets closing (with jump)
+keymap.set({"i"}, "(", "()<ESC>i")
+keymap.set({"i"}, "[", "[]<ESC>i")
+keymap.set({"i"}, "{", "{}<ESC>i")
+keymap.set({"i"}, "'", "''<ESC>i")
+keymap.set({"i"}, '"', '""<ESC>i')
+keymap.set({"i"}, "`", "``<ESC>i")
+keymap.set({"i"}, "$", "$$<ESC>i")
+-- automatic brackets completiond with selected tokens (and cursor at end) 
+keymap.set({"v"}, "(", "di()<ESC>hgp")
+keymap.set({"v"}, "[", "di[]<ESC>hgp")
+keymap.set({"v"}, "{", "di{}<ESC>hgp")
+keymap.set({"v"}, "'", "di''<ESC>hgp")
+keymap.set({"v"}, '"', 'di""<ESC>hgp')
+keymap.set({"v"}, "`", "di``<ESC>hgp")
+keymap.set({"v"}, "$", 'di$$<ESC>hgp')
 
-keymap.set({"n","i"}, "<C-]>", "<S-v>>") -- tab forward the entire line (like vscode)
-keymap.set({"n","i"}, "<C-[>", "<S-v><") -- tab backward the entire line (like vscode)
+
+-- keymap.set({"n"}, "<C-]>", "<S-v>>") -- tab forward the entire line (like vscode)
+-- keymap.set({"n"}, "<C-[>", "<S-v><") -- tab backward the entire line (like vscode)
+-- keymap.set({"i"}, "<C-]>", "<ESC><S-v>>") -- tab forward the entire line (like vscode)
+-- keymap.set({"i"}, "<C-[>", "<ESC><S-v><") -- tab backward the entire line (like vscode)
 keymap.set("n", "<C-a>", "gg<S-v>G") -- select all
 
--- word walk in n,v,i-mode mode like vscode
-keymap.set("i", "<C-h>", "<ESC>bi") -- move by left word
-keymap.set({"n","v"}, "<C-h>", "b")
-keymap.set("i", "<C-l>", "<ESC>ea") -- move by right word
-keymap.set({"n","v"}, "<C-l>", "e")
 
-
+-- Multi-cursor behavior like ctrl+d in vscode is not good for vim design
+------ use :%s/to_be_replaced/replacing_contents/gc. Or cgn in view mode with n (next search) and . (repeating); or with 
 
 ---------------------------------------------------------------------------------------------
 ---------------------------------- tab splitting block --------------------------------------
 ---------------------------------------------------------------------------------------------
 keymap.set("n", "<S-t>", ":tabnew<CR>:terminal<CR>i", {silent = true}) -- create a new buffer and enter to the terminal mode. This also serve as  `:tabnew<CR>`
-keymap.set("t", "<S-w>", "<C-\\><C-n>", {noremap = true}) -- exit the terminal mode
 keymap.set("n", "<S-q>", ":tabclose<CR>") -- close a new tab (<C-W> will affect walk among windows...)
 
-keymap.set("n", "<S-l>", ":tabnext<CR>") -- move to next tab
-keymap.set("n", "<S-h>", ":tabprev<CR>") -- move to previous tab
+keymap.set("t", "<S-e>", "<C-\\><C-n>", {noremap = true}) -- exit the terminal mode (and go back to normal mode)
+keymap.set({"n"}, "<S-l>", ":tabnext<CR>") -- move to next tab
+keymap.set({"n"}, "<S-h>", ":tabprev<CR>") -- move to previous tab
 
-keymap.set("n", "<leader>1", "1gt") -- move to tab 1
-keymap.set("n", "<leader>2", "2gt") -- move to tab 2
-keymap.set("n", "<leader>3", "3gt") -- move to tab 3
-keymap.set("n", "<leader>4", "4gt") -- move to tab 4
-keymap.set("n", "<leader>5", "5gt") -- move to tab 4
+keymap.set({"n"}, "<S>1", "1gt") -- move to tab 1
+keymap.set({"n"}, "<S>2", "2gt") -- move to tab 2
+keymap.set({"n"}, "<S>3", "3gt") -- move to tab 3
+keymap.set({"n"}, "<S>4", "4gt") -- move to tab 4
+keymap.set({"n"}, "<S>5", "5gt") -- move to tab 4
 
 
 

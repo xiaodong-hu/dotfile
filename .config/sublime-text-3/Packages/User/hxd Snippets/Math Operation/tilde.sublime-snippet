@@ -1,8 +1,0 @@
-<snippet>
-	<description>long tilde</description>
-	<content><![CDATA[
-\widetilde{$1} 
-]]></content>
-	<tabTrigger>t</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

@@ -1,8 +1,0 @@
-<snippet>
-	<description>beta</description>
-	<content><![CDATA[
-\beta
-]]></content>
-	<tabTrigger>b</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

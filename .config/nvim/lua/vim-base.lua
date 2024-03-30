@@ -14,11 +14,11 @@ vim.opt.number = true
 vim.opt.relativenumber = true   -- use relative line number
 
 
-vim.opt.cursorline = true       -- hightlight current line
+vim.opt.cursorline = true       -- highlight current line
 vim.opt.linebreak = true        -- allow linebreak when warp a long line
 
 vim.opt.showmatch = true        -- show search match
-vim.opt.hlsearch = false        -- hightline search result
+vim.opt.hlsearch = true         -- highlight search result
 vim.opt.incsearch = true        -- search when typing
 
 -- search ignore cases unless capital letter is contained

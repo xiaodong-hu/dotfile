@@ -1,8 +1,0 @@
-<snippet>
-	<description>mathcal</description>
-	<content><![CDATA[
-\mathcal{$1} 
-]]></content>
-	<tabTrigger>mc</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

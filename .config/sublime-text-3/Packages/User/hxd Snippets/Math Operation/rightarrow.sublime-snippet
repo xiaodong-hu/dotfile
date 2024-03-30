@@ -1,8 +1,0 @@
-<snippet>
-	<description>rightarrow</description>
-	<content><![CDATA[
-\rightarrow 
-]]></content>
-	<tabTrigger>ra</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

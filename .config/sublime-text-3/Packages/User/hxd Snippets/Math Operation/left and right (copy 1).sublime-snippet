@@ -1,8 +1,0 @@
-<snippet>
-	<description>left(...right)</description>
-	<content><![CDATA[
-\left($0\right) 
-]]></content>
-	<tabTrigger>lr</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

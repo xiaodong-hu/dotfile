@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/hxd/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/hxd/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/hxd/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/hxd/.cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/hxd/.cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -99,10 +99,10 @@ _G.packer_plugins = {
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["julia-vim"] = {
+  ["copilot.vim"] = {
     loaded = true,
-    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/julia-vim",
-    url = "https://github.com/JuliaEditorSupport/julia-vim"
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -119,15 +119,25 @@ _G.packer_plugins = {
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["onedarkpro.nvim"] = {
+    loaded = true,
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/onedarkpro.nvim",
+    url = "https://github.com/olimorris/onedarkpro.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["space-nvim"] = {
+  ["space-vim-theme"] = {
     loaded = true,
-    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/space-nvim",
-    url = "https://github.com/Th3Whit3Wolf/space-nvim"
+    path = "/home/hxd/.local/share/nvim/site/pack/packer/start/space-vim-theme",
+    url = "https://github.com/liuchengxu/space-vim-theme"
   },
   ["vim-vsnip"] = {
     loaded = true,
@@ -135,6 +145,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/vim-vsnip"
   },
   vimtex = {
+    config = { "\27LJ\2\n£\3\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0ƒ\3            let g:tex_flavor = 'latex'\n            let g:vimtex_view_method = 'general'\n            let g:vimtex_view_general_viewer = 'evince'\n\n            let g:vimtex_view_automatic = 0\n            let g:vimtex_compiler_latexmk = {'continuous': 0}\n            let g:vimtex_quickfix_open_on_warning = 0\n            set conceallevel=2\n            let g:tex_conceal='abdmg'\n        \bcmd\bvim\0" },
     loaded = true,
     path = "/home/hxd/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
@@ -142,6 +153,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: vimtex
+time([[Config for vimtex]], true)
+try_loadstring("\27LJ\2\n£\3\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0ƒ\3            let g:tex_flavor = 'latex'\n            let g:vimtex_view_method = 'general'\n            let g:vimtex_view_general_viewer = 'evince'\n\n            let g:vimtex_view_automatic = 0\n            let g:vimtex_compiler_latexmk = {'continuous': 0}\n            let g:vimtex_quickfix_open_on_warning = 0\n            set conceallevel=2\n            let g:tex_conceal='abdmg'\n        \bcmd\bvim\0", "config", "vimtex")
+time([[Config for vimtex]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

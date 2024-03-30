@@ -1,9 +1,0 @@
-<snippet>
-	<description>section-hxd</description>
-	<content><![CDATA[
-\section{$1}\label{sec:$1}
-	$0
-]]></content>
-	<tabTrigger>sec</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

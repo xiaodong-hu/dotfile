@@ -1,0 +1,13 @@
+[[language]]
+name = "rust"
+auto-format = true
+
+
+
+[[language]]
+name = "python"
+auto-format = true
+
+[[language]]
+name = "julia"
+auto-format = true

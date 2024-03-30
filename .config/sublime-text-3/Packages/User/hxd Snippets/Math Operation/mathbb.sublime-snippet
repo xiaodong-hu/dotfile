@@ -1,8 +1,0 @@
-<snippet>
-	<description>mathbb</description>
-	<content><![CDATA[
-\mathbb{$1} 
-]]></content>
-	<tabTrigger>mb</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

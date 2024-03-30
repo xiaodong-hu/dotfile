@@ -1,0 +1,37 @@
+theme = "onedark"
+
+[editor]
+true-color = true
+line-number = "relative"
+mouse = false
+cursorline = true          # highlight current line
+cursorcolumn = true        # highlight current column
+auto-format = true         # save with format
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25 # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""  # set wrap-indicator to "" to hide it
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.whitespace]
+render = "all"
+
+[editor.whitespace.characters]  # render all tabs and spaces
+space = "·"
+tab = "·"
+newline = " " # show nothing for a newline
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)

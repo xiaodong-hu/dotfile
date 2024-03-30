@@ -1,8 +1,0 @@
-<snippet>
-	<description>Sigma</description>
-	<content><![CDATA[
-\Sigma
-]]></content>
-	<tabTrigger>s</tabTrigger>
-	<scope>text.tex.latex</scope>
-</snippet>

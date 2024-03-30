@@ -1,0 +1,6 @@
+// see ArchWiki
+configuration {
+    modi: "drun,window,ssh";
+    font: "Fira Code Medium 12";
+}
+@theme "/usr/share/rofi/themes/lb.rasi"

@@ -146,7 +146,7 @@
 	"preview_math_density": 300,
 	// If the image is not sharp enough increase this scale to get a better resolution.
 	// However also change the density by the same factor to keep the size.
-	"preview_math_scale_quotient": 1.4,
+	"preview_math_scale_quotient": 1.6,
 	// If this is true, the image will be rendered at a higher resolution and
 	// then scaled down. This generally results in a clearer image.
 	"preview_math_hires": false,
@@ -239,7 +239,7 @@
 		// non-standard location or want to use a particular version of python.
 		// Both Python2 and Python3 are supported, but must have the DBus bindings
 		// installed.
-		"python": "",
+		"python": "/usr/bin/python",
 		// The name of the ST2 or ST3 executable. On Ubuntu, both subl and sublime-text are
 		// available for ST2; adjust as needed for other platforms, and for ST3
 		"sublime": "sublime-text",

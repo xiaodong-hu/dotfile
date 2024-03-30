@@ -1,27 +1,36 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  --
   use 'wbthomason/packer.nvim'
   use 'liuchengxu/space-vim-theme'       -- color theme
+  use {
+    -- color theme containing: 
+    -- onedark
+    -- onelight
+    -- onedark_vivid
+    -- onedark_dark
+    "olimorris/onedarkpro.nvim"
+  }
   use 'neovim/nvim-lspconfig'
 
   --
   -- Section for vimtex
   --
-  use { 'lervag/vimtex',
-    vim.cmd([[
-      let g:tex_flavor = 'latex'
-      let g:vimtex_view_method = 'general'
-      let g:vimtex_view_general_viewer = 'evince'
+  use { 
+    'lervag/vimtex',
+    config = function()
+        vim.cmd([[
+            let g:tex_flavor = 'latex'
+            let g:vimtex_view_method = 'general'
+            let g:vimtex_view_general_viewer = 'evince'
 
-      let g:vimtex_view_automatic = 0
-      let g:vimtex_compiler_latexmk = {'continuous': 0}
-      let g:vimtex_quickfix_open_on_warning = 0
-      set conceallevel=2
-      let g:tex_conceal='abdmg'
-    ]])
+            let g:vimtex_view_automatic = 0
+            let g:vimtex_compiler_latexmk = {'continuous': 0}
+            let g:vimtex_quickfix_open_on_warning = 0
+            set conceallevel=2
+            let g:tex_conceal='abdmg'
+        ]])
+    end
   }
 
   --
@@ -39,11 +48,13 @@ return require('packer').startup(function(use)
   use 'onsails/lspkind-nvim'
 
 
-  --
   -- treesitter
-  --
   use {
       'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+      run = ':TSUpdate', -- automatic update
+  }
+
+  use {
+      'github/copilot.vim'
   }
 end)

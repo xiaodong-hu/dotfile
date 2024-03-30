@@ -1,0 +1,120 @@
+{
+    "window.zoomLevel": 1,
+    "editor.wordWrap": "on",
+    "editor.fontFamily": "'Fira Code Retina', 'monospace', monospace",
+    "editor.fontSize": 15,
+    "editor.formatOnSave": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "workbench.colorTheme": "Eva Dark Bold",
+    "workbench.iconTheme": "material-icon-theme",
+    "window.menuBarVisibility": "toggle",
+    "jupyter.kernels.trusted": [
+        "/usr/share/jupyter/kernels/rust"
+    ],
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.bibtex-fields.sort.enabled": true,
+    "latex-workshop.hover.preview.enabled": true,
+    "latex-workshop.view.pdf.ref.viewer": "external",
+    "latex-workshop.mathpreviewpanel.cursor.enabled": true,
+    "latex-workshop.hover.preview.scale": 1.5,
+    "latex-workshop.hover.preview.maxLines": 1000,
+    "latex-workshop.hover.preview.mathjax.extensions": [
+        "amscd",
+        "boldsymbol",
+        "mathtools",
+        "upgreek"
+    ],
+    "notebook.output.wordWrap": true,
+    "notebook.output.textLineLimit": 10,
+    "notebook.output.fontSize": 14,
+    "notebook.output.lineHeight": 1,
+    "notebook.lineNumbers": "on",
+    "[markdown]": { /// language specific settings (override the general one)
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": { // particularly useful for fast typing markdown within jupyter notebook !!!
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+        },
+        "editor.quickSuggestionsDelay": 0,
+    },
+    "[julia]": { /// language specific settings (override the general one)
+        "editor.quickSuggestionsDelay": 0, // no delay for fast typing
+        "editor.quickSuggestions": {
+            "strings": "on",
+            "comments": "on",
+            "other": "on"
+        }
+    },
+    "[typst]": {
+        "editor.tabSize": 4,
+        "editor.quickSuggestionsDelay": 0, // no delay for fast typing
+        "editor.quickSuggestions": {
+            "strings": "on",
+            "comments": "on",
+            "other": "on"
+        }
+    },
+    "julia.enableTelemetry": true,
+    "latex-workshop.latex.tools": [
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "--shell-escape",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdflatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ],
+        },
+    ],
+    "notebook.formatOnSave.enabled": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "latex": "true",
+        "rust": true,
+        "julia": "true",
+        "python": "true",
+        "cpp": "true",
+        "c": "true",
+        "typst": true
+    },
+    "github.copilot.advanced": {},
+    "git.openRepositoryInParentFolders": "always",
+    "files.associations": {
+        "*.typ": "typst"
+    },
+    "editor.formatOnPaste": true
+}

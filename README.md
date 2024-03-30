@@ -1,8 +1,9 @@
 # Window Manager
-1. `i3wm` with `polybar` and `picom`
-2. terminal is `alacritty`
-3. file manager is `ranger`
+- WM: `Hyprland`
+- top/bottom bars: `waybar`
+- terminal: `alacritty`
+- shell: `zsh`
+- (terminal) file manager: `ranger`
 
-# Dependence
-1. Selected fonts: `ttf-font-awesome`, `Fira Code`
-3. `zsh` with `powerlevel10k` theme
+Example:
+![image](./2024-03-29_screenshot.png)

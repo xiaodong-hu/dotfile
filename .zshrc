@@ -16,15 +16,17 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export EDITOR="nvim"
 
+# for Ruby package manager
+export GEM_HOME="$(gem env user_gemhome)"
+export PATH="$PATH:$GEM_HOME/bin"
 
 
 
-
-
-
+# ALL alias
 alias paru="paru --bottomup"        # display the paru search list in reverse order for selection
 alias rg="ranger"
-
+alias hx="helix"
+alias cl="clear"
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -130,3 +132,6 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2023-09-15 05:31:38
+export PATH="$PATH:/home/hxd/.local/bin"

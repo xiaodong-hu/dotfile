@@ -1,0 +1,94 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 32,
+    "modules-left": [
+        "backlight",
+        "pulseaudio",
+    ],
+    "modules-center": [
+        "network"
+    ],
+    "modules-right": [
+        // "memory",
+        "temperature",
+        "cpu",
+        "battery",
+        "tray",
+    ],
+    // std modules below
+    "backlight": {
+        "device": "intel_backlight",
+        "format": " {icon} {percent}%",
+        "format-icons": [
+            "",
+            ""
+        ]
+    },
+    "battery": {
+        "format": "{capacity}% {icon} ",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "memory": {
+        "interval": 30,
+        "format": "MEM {used:0.1f}G/{total:.0f}G"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "{icon0} {icon1} {icon2} {icon3} {icon4} {icon5} {icon6} {icon7} {icon8} {icon9} {icon10} {icon11}",
+        "format-icons": [
+            "<span color='#f8f8f2'>▁</span>", // white
+            "<span color='#f8f8f2'>▂</span>", // white
+            "<span color='#f8f8f2'>▃</span>", // white
+            "<span color='#f8f8f2'>▄</span>", // white
+            "<span color='#ffffa5'>▅</span>", // yellow
+            "<span color='#ffffa5'>▆</span>", // yellow
+            "<span color='#ff9977'>▇</span>", // orange
+            "<span color='#dd532e'>█</span>" // red
+        ]
+    },
+    "network": {
+        "interval": 1,
+        "format": "Up {bandwidthUpBits} | Down {bandwidthDownBits}"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C ",
+        "format": "TEMP {temperatureC}°C"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{format_source}  {icon} {volume}%",
+        "format-bluetooth": "{format_source}  {icon} {volume}%",
+        "format-muted": "{format_source}  Muted",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click-right": "pavucontrol" // set right click to avoid accidental touching
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+    // customized modules below
+}

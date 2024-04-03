@@ -16,4 +16,4 @@ power_now=$(echo "$tlp_output" | grep "power_now" | awk '{print $3}' | tr -d '[]
 energy_now=$(echo "$tlp_output" | grep "energy_now" | awk '{print $3}' | tr -d '[]mWh')
 
 # Print the results
-printf "%.2f W | %.2f Wh\n" $(echo "scale=2; $power_now/1000" | bc) $(echo "scale=2; $energy_now/1000" | bc)
+printf "%.1fW/%.1fWh\n" $(echo "scale=2; $power_now/1000" | bc) $(echo "scale=2; $energy_now/1000" | bc)

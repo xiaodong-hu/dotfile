@@ -26,8 +26,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.mouse = 'a'             -- allow mouse use
--- directory copy to system clipboard (with `xclip`)
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus' -- copy to system clipboard (with `xclip` or `wl-clipboard`)
 
 
 -- about tab

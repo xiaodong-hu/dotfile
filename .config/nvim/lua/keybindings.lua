@@ -6,10 +6,12 @@ local keymap = vim.keymap -- local variable
 ---------------------------------------------------------------------------------------------
 -- Ctrl-y Moves screen up one line
 -- Ctrl-e Moves screen down one line
---
+keymap.set({"n","v","i"}, "<C-j>", "<C-e>")
+keymap.set({"n","v","i"}, "<C-k>", "<C-y>")
+
 -- Ctrl-u Moves cursor & screen up ½ page
 -- Ctrl-d Moves cursor & screen down ½ page
---
+
 -- Ctrl-b Moves screen up one page, cursor to last line
 -- Ctrl-f Moves screen down one page, cursor to first line
 
@@ -19,22 +21,22 @@ local keymap = vim.keymap -- local variable
 keymap.set({"n","v","i"}, "<ESC>", "<ESC>") -- something is conflicting with <ESC> here... so I have to map it for use...
 -- keymap.set({"n","v"}, "p", '"0p') -- something is conflicting with <ESC> here... so I have to map it for use...
 
-
-keymap.set({"i"}, "<C-v>", "<ESC>lv") -- directly jump to view select mode in edit mode 
-
-keymap.set({"i"}, "<C-l>", "<ESC>ea") -- word walk like vscode
-keymap.set({"n"}, "<C-l>", "ve") -- directly jump to view select mode (word select like vscode)
-keymap.set({"v"}, "<C-l>", "e") -- directly jump to view select mode (word select like vscode)
-
-keymap.set({"i"}, "<C-h>", "<ESC>bi") -- word walk like vscode
-keymap.set({"n"}, "<C-h>", "vb") -- directly jump to view select (word select like vscode)
-keymap.set({"v"}, "<C-h>", "b") -- directly jump to view select (word select like vscode)
-
 -- diable arrow keys in ALL Modes
 keymap.set({"n","v","i"}, "<Up>", "<Nop>")
 keymap.set({"n","v","i"}, "<Down>", "<Nop>")
 keymap.set({"n","v","i"}, "<Left>", "<Nop>")
 keymap.set({"n","v","i"}, "<Right>", "<Nop>")
+
+keymap.set({"i"}, "<C-v>", "<ESC>lv") -- directly switch from edit mode to view mode
+
+keymap.set({"n"}, "<C-l>", "e") -- word walk like vscode
+keymap.set({"i"}, "<C-l>", "<ESC>ea") -- word walk like vscode
+keymap.set({"v"}, "<C-l>", "e") -- word walk like vscode
+
+keymap.set({"n"}, "<C-h>", "b") -- word walk like vscode
+keymap.set({"i"}, "<C-h>", "<ESC>bi") -- word walk like vscode
+keymap.set({"v"}, "<C-h>", "b") -- word walk like vscode
+
 
 -- automatic brackets closing (with jump)
 keymap.set({"i"}, "(", "()<ESC>i")
@@ -51,7 +53,7 @@ keymap.set({"v"}, "{", "di{}<ESC>hgp")
 keymap.set({"v"}, "'", "di''<ESC>hgp")
 keymap.set({"v"}, '"', 'di""<ESC>hgp')
 keymap.set({"v"}, "`", "di``<ESC>hgp")
-keymap.set({"v"}, "$", 'di$$<ESC>hgp')
+-- keymap.set({"v"}, "$", 'di$$<ESC>hgp') -- sometimes we need to choose til end of the line, so this should be commented
 
 
 -- keymap.set({"n"}, "<C-]>", "<S-v>>") -- tab forward the entire line (like vscode)

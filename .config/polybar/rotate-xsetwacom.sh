@@ -4,7 +4,7 @@
 
 # Find the line in "xrandr -q --verbose" output that contains current screen orientation and "strip" out current orientation.
 
-rotation="$(xrandr -q --verbose | grep 'connected' | egrep -o  '\) (normal|left|inverted|right) \(' | egrep -o '(normal|left|inverted|right)')"
+rotation_status="$(xrandr -q --verbose | grep 'connected' | grep -E -o  '\) (normal|left|inverted|right) \(' | grep -E -o '(normal|left|inverted|right)')"
 
 # Using current screen orientation proceed to rotate screen and input devices.
 
@@ -12,7 +12,7 @@ rotation="$(xrandr -q --verbose | grep 'connected' | egrep -o  '\) (normal|left|
 # see for wacom device names (id)
 # xsetwacom list devices
 
-case "$rotation" in
+case "$rotation_status" in
     normal)
     # rotate to the left
     xrandr -o left

@@ -1,8 +1,14 @@
-require("vim-base")
-require("keybindings")
-require("appearance")
-require("plugins")
+-- basic settings
+require("config.autocmd")
+require("config.keymaps")
+require("config.options") -- vim options
 
-require("lsp")
-require("nvim-cmp")
--- require("nabla_conceal")
+-- lazy.nvim and plugins
+require("config.lazy") -- load lazy.nvim and plugins
+
+
+
+
+-- require("appearance") -- load appearance settings (colorscheme, etc)
+-- require("lsp")
+-- require("nvim-cmp") -- load nvim-cmp settings (completion)

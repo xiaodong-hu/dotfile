@@ -28,6 +28,7 @@ vim.opt.smartcase = true
 vim.opt.mouse = 'a'             -- allow mouse use
 vim.opt.clipboard = 'unnamedplus' -- copy to system clipboard (with `xclip` or `wl-clipboard`)
 
+vim.opt.laststatus = 3        -- always show statusline
 
 -- about tab
 vim.opt.tabstop = 4
@@ -35,7 +36,10 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4 -- tab size
 vim.opt.expandtab = true -- force convert tab to spaces (so that every time escape the first work for the head of line we won't get back)
 
-
+-- Treesitter folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
 
 -- new line indent
 vim.opt.autoindent = true
@@ -49,6 +53,10 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 
 vim.wo.signcolumn = 'no'
+
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+
 
 ---- save with automatic formatting with lsp (this is a sync procedure)
 vim.cmd [[

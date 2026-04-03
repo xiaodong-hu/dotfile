@@ -44,7 +44,7 @@ keymap.set({"i"}, "[", "[]<ESC>i")
 keymap.set({"i"}, "{", "{}<ESC>i")
 keymap.set({"i"}, "'", "''<ESC>i")
 keymap.set({"i"}, '"', '""<ESC>i')
-keymap.set({"i"}, "`", "``<ESC>i")
+-- keymap.set({"i"}, "`", "``<ESC>i")
 keymap.set({"i"}, "$", "$$<ESC>i")
 -- automatic brackets completiond with selected tokens (and cursor at end) 
 keymap.set({"v"}, "(", "di()<ESC>hgp")
@@ -69,18 +69,18 @@ keymap.set("n", "<C-a>", "gg<S-v>G") -- select all
 ---------------------------------------------------------------------------------------------
 ---------------------------------- tab splitting block --------------------------------------
 ---------------------------------------------------------------------------------------------
-keymap.set("n", "<S-t>", ":tabnew<CR>:terminal<CR>i", {silent = true}) -- create a new buffer and enter to the terminal mode. This also serve as  `:tabnew<CR>`
-keymap.set("n", "<S-q>", ":tabclose<CR>") -- close a new tab (<C-W> will affect walk among windows...)
-
-keymap.set("t", "<S-e>", "<C-\\><C-n>", {noremap = true}) -- exit the terminal mode (and go back to normal mode)
-keymap.set({"n"}, "<S-l>", ":tabnext<CR>") -- move to next tab
-keymap.set({"n"}, "<S-h>", ":tabprev<CR>") -- move to previous tab
-
-keymap.set({"n"}, "<S>1", "1gt") -- move to tab 1
-keymap.set({"n"}, "<S>2", "2gt") -- move to tab 2
-keymap.set({"n"}, "<S>3", "3gt") -- move to tab 3
-keymap.set({"n"}, "<S>4", "4gt") -- move to tab 4
-keymap.set({"n"}, "<S>5", "5gt") -- move to tab 4
+-- keymap.set("n", "<S-t>", ":tabnew<CR>:terminal<CR>i", {silent = true}) -- create a new buffer and enter to the terminal mode. This also serve as  `:tabnew<CR>`
+-- keymap.set("n", "<S-q>", ":tabclose<CR>") -- close a new tab (<C-W> will affect walk among windows...)
+-- 
+-- keymap.set("t", "<S-e>", "<C-\\><C-n>", {noremap = true}) -- exit the terminal mode (and go back to normal mode)
+-- keymap.set({"n"}, "<S-l>", ":tabnext<CR>") -- move to next tab
+-- keymap.set({"n"}, "<S-h>", ":tabprev<CR>") -- move to previous tab
+-- 
+-- keymap.set({"n"}, "<S>1", "1gt") -- move to tab 1
+-- keymap.set({"n"}, "<S>2", "2gt") -- move to tab 2
+-- keymap.set({"n"}, "<S>3", "3gt") -- move to tab 3
+-- keymap.set({"n"}, "<S>4", "4gt") -- move to tab 4
+-- keymap.set({"n"}, "<S>5", "5gt") -- move to tab 4
 
 
 

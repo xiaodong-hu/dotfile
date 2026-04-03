@@ -1,10 +1,10 @@
 return {
-{
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "saghen/blink.cmp" },
     config = function()
-      vim.lsp.enable({ "rust_analyzer", "clangd", "pyright", "julia" })
+      vim.lsp.enable({ "rust_analyzer", "clangd", "pyright", "julials" })
     end,
   },
   {

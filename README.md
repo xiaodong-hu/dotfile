@@ -1,9 +1,9 @@
 # Window Manager
-- WM: `Hyprland`
+- WM: `niri`
 - top/bottom bars: `waybar`
-- terminal: `alacritty`
+- terminal: `kitty`
 - shell: `zsh`
-- (terminal) file manager: `ranger`
+- (terminal) file manager: `yazi`
 
 Example:
-![image](./2024-03-29_screenshot.png)
+![image](./2026-07-16_14-14-34.png)

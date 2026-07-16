@@ -270,6 +270,10 @@ spawn-sh-at-startup "dropbox &"
 
 spawn-sh-at-startup "kitty --single-instance --start-as=hidden"
 
+// Collapse external workspace windows onto their laptop pairs when unplugged,
+// and restore only those migrated windows when an external output returns.
+spawn-sh-at-startup "~/.config/niri/switch_workspace_in_pair.sh --watch"
+
 
 
 // You can change the path where screenshots are sopen-on-outputaved.
@@ -312,6 +316,11 @@ window-rule {
 }
 window-rule {
     match app-id="thunar$"
+    open-maximized false
+    open-maximized-to-edges false
+}
+window-rule {
+    match app-id="inkscape$"
     open-maximized false
     open-maximized-to-edges false
 }
@@ -491,5 +500,4 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
 }
-
 

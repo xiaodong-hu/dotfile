@@ -1,0 +1,14 @@
+[[plugin.deps]]
+use = "AnirudhG07/custom-shell"
+rev = "3449686"
+hash = "8009873342496fdb042bba09e239eef3"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "0670801"
+hash = "b8f46853c27707115f25f3423a47bd38"
